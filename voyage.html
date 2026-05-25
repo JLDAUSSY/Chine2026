@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Le voyage</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script src="provinces.js"></script>
+
+<style>
+
+#map {
+  height: calc(100vh - 120px); /* Réduit la hauteur pour laisser de la place au titre */
+  width: 100%;
+  margin-top: 0; /* Colle la carte au header */
+}
+
+/* =========================
+   PROVINCE LABEL (AGRANDI)
+========================= */
+
+.province-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.province-name {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  white-space: nowrap;
+  pointer-events: none;
+
+  /* 🔥 1.5x plus grand + gras */
+  font-size: 19.5px;   /* ~13px × 1.5 */
+  font-weight: 700;
+
+  color: #111;
+
+  text-shadow: 0 0 4px rgba(255,255,255,0.85);
+
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* =========================
+   ROUTE
+========================= */
+
+.route-line {
+  color: #1f2a44;
+  weight: 3;
+  opacity: 0.85;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Le voyage</h1>
+<a class="homebtn" href="index.html">← Accueil</a>
+</header>
+
+<div id="map"></div>
+
+<script>
+
+var map = L.map('map')
+
+// ============================
+// LIMITES (stables, sans snap back)
+// ============================
+
+var southWest = L.latLng(28.523037517192364, 104.88364248831648)
+var northEast = L.latLng(40.96313757261032, 122.5)
+
+var bounds = L.latLngBounds(southWest, northEast)
+
+map.fitBounds(bounds, {
+  padding: [20, 20],
+  animate: false
+})
+
+setTimeout(() => {
+  map.invalidateSize()
+}, 150)
+
+// fond
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+maxZoom:18,
+attribution:'© OpenStreetMap'
+}
+).addTo(map)
+
+// ============================
+// NAVIGATION
+// ============================
+
+function go(set){
+
+if(set==='pekinmap'){
+window.location.href='pekin.html?v=' + Date.now()
+return
+}
+
+if(set==='huangshanmap'){
+window.location.href='huangshan.html'
+return
+}
+
+if(set==='xianmap'){
+window.location.href='xian.html'
+return
+}
+
+window.location.href='slideshow.html?set='+set
+}
+
+// ============================
+// VILLES
+// ============================
+
+function ville(lat, lon, name, set){
+
+var label = L.marker([lat,lon], {
+icon:L.divIcon({
+className:'ville-label',
+html:'<div class="ville-box">'+name+'</div>'
+})
+}).addTo(map)
+
+label.on('click', function(){
+go(set)
+})
+
+}
+
+const villes = {
+
+pekin:[39.9042,116.4074],
+pingyao:[37.1896,112.1767],
+xian:[34.3416,108.9398],
+tianshui:[34.5809,105.7249],
+nankin:[32.0603,118.7969],
+huangshan:[29.7147,118.3376],
+hangzhou:[30.2741,120.1551],
+shanghai:[31.2304,121.4737]
+
+}
+
+ville(...villes.pekin,'Pékin','pekinmap')
+ville(...villes.pingyao,'Pingyao','pingyao')
+ville(...villes.xian,'Xi’an','xianmap')
+ville(...villes.tianshui,'Tianshui','tianshui')
+ville(...villes.nankin,'Nankin','nankin')
+ville(...villes.huangshan,'Huangshan','huangshanmap')
+ville(...villes.hangzhou,'Hangzhou','hangzhou')
+ville(...villes.shanghai,'Shanghai','shanghai')
+
+// ============================
+// ROUTE
+// ============================
+
+const routeCoords = [
+villes.pekin,
+villes.pingyao,
+villes.xian,
+villes.tianshui,
+villes.nankin,
+villes.huangshan,
+villes.hangzhou,
+villes.shanghai,
+villes.pekin
+]
+
+const routeLine = L.polyline(routeCoords, {
+color:'#1f2a44',
+weight:3,
+opacity:0.85
+}).addTo(map)
+
+routeLine.on('mouseover', function(){
+this.setStyle({
+color:'#0b1f3a',
+weight:5,
+opacity:0.95
+})
+})
+
+routeLine.on('mouseout', function(){
+this.setStyle({
+color:'#1f2a44',
+weight:3,
+opacity:0.85
+})
+})
+
+// ============================
+// PROVINCES
+// ============================
+
+const geo = topojson.feature(
+provincesData,
+provincesData.objects.provinces
+)
+
+const baseLayer = L.geoJSON(geo, {
+
+style: function(){
+return {
+color:'#000',
+weight:1,
+opacity:0.5,
+fillOpacity:0
+}
+}
+
+}).addTo(map)
+
+const mainLayer = L.geoJSON(geo, {
+
+style: function(){
+return {
+color:'#000',
+weight:1.2,
+opacity:0.6,
+fillColor:'#fff',
+fillOpacity:0.02
+}
+},
+
+onEachFeature: function(feature, layer){
+
+const center = layer.getBounds().getCenter()
+
+const label = L.marker(center, {
+interactive:false,
+icon:L.divIcon({
+className:'province-label',
+html:'<div class="province-name">'+feature.properties.name+'</div>'
+})
+}).addTo(map)
+
+layer._label = label
+
+layer.on('mouseover', function(){
+
+layer.setStyle({
+color:'#0b1f3a',
+weight:3,
+opacity:1,
+fillColor:'#0b1f3a',
+fillOpacity:0.12
+})
+
+layer.bringToFront()
+
+if(layer._label){
+const el = layer._label.getElement()
+if(el){
+const name = el.querySelector('.province-name')
+if(name){
+name.style.opacity = '1'
+name.style.color = '#0b1f3a'
+name.style.transform = 'translate(-50%, -50%) scale(1.05)'
+}
+}
+}
+
+})
+
+layer.on('mouseout', function(){
+
+layer.setStyle({
+color:'#000',
+weight:1.2,
+opacity:0.6,
+fillColor:'#fff',
+fillOpacity:0.02
+})
+
+if(layer._label){
+const el = layer._label.getElement()
+if(el){
+const name = el.querySelector('.province-name')
+if(name){
+name.style.opacity = '0'
+name.style.transform = 'translate(-50%, -50%) scale(1)'
+}
+}
+}
+
+})
+
+}
+
+}).addTo(map)
+
+</script>
+
+</body>
+</html>

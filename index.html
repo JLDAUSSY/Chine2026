@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Voyage en Chine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button id="helpBtn" class="help-trigger" aria-label="Aide à la navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span>Aide</span>
+    </button>
+
+    <div class="hero">
+        <h1>Voyage en Chine</h1>
+        <div class="separator"></div>
+        
+        <div class="intro">
+            Trois semaines à travers la Chine en avril 2026 :
+            Pékin et la Grande Muraille, Pingyao, Xi’an et l'Armée enterrée,
+            Tianshui et les grottes de Maijishan, Nankin,
+            Huangshan et les villages de Hongcun et Xidi, Hangzhou
+            et Shanghai.
+            <br><br>
+            Ce minisite raconte, par les photos, un voyage dans une Chine à la fois traditionnelle et moderne.
+            Cliquer sur les boites pour accéder aux photos.
+        </div>
+
+        <div class="menu-grid">
+            <a class="card3d" href="voyage.html">
+                <div>Le voyage</div>
+            </a>
+
+            <a class="card3d" href="slideshow.html?set=nourriture">
+                <div>La nourriture</div>
+            </a>
+
+            <a class="card3d" href="slideshow.html?set=transports">
+                <div>Les transports</div>
+            </a>
+
+            <a class="card3d" href="slideshow.html?set=chinois">
+                <div>C’est du chinois 😅</div>
+            </a>
+
+            <a class="card3d" href="slideshow.html?set=scenesrue">
+                <div>Scènes de rue</div>
+            </a>
+
+            <a class="card3d" href="slideshow.html?set=police">
+                <div>Police !</div>
+            </a>
+        </div>
+    </div>
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeHelp" aria-label="Fermer">&times;</button>
+            <h2>Guide de Navigation</h2>
+            <div class="separator"></div>
+            
+            <div class="help-sections">
+                <div class="help-item">
+                    <h3>🗺️ Le Voyage</h3>
+                    <p>Découvrez notre itinéraire chronologique pas à pas. Vous y trouverez le fil conducteur de nos trois semaines d'aventure.
+                        <br>• Un appui sur <strong>"Accueil"</strong> vous ramènera directement au menu principal.
+                    </p>
+                </div>
+                <div class="help-item">
+                    <h3>📸 Les Thématiques</h3>
+                    <p>Cliquez sur les différentes cartes (Nourriture, Transports, Scènes de rue...) pour ouvrir un <strong>diaporama photo</strong> interactif dédié à chaque aspect de notre séjour.
+                        <br>• 💡 <strong>Repère historique :</strong> Une frise des dynasties se trouve à la fin du diaporama <strong>"C’est du chinois"</strong>.
+                    </p>
+                </div>
+                <div class="help-item">
+                    <h3>🖼️ Utilisation du Diaporama</h3>
+                    <p>Une fois dans un diaporama :
+                        <br>• Utilisez les flèches à l'écran (ou les touches fléchées de votre clavier) pour faire défiler les clichés.
+                        <br>• Un appui sur <strong>"Retour"</strong> vous ramènera directement au menu principal.
+                    </p>
+                </div>
+                <div class="help-item">
+                    <h3>🔍 Fonctionnement du Zoom</h3>
+                    <p>Pour observer les détails des clichés en haute définition :
+                        <br>• Utilisez <strong>CTRL + Molette de la souris</strong> pour zoomer ou dézoomer sur l'image.
+                        <br>• Faites un <strong>cliquer-glisser</strong> (click and drag) pour déplacer l'image zoomée et naviguer dedans.
+                        <br>• Faites un <strong>double-clic</strong> pour réinitialiser instantanément l'affichage à 100%.
+                    </p>
+                </div>
+                <div class="help-item">
+                    <h3>ℹ️ Informations détaillées</h3>
+                    <p>Sur certaines images, une icône <strong>"i"</strong> est disponible. Cliquez dessus pour afficher ou masquer les détails historiques, les anecdotes de voyage ou les secrets des lieux capturés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-signature">
+        Edith et Jean-Luc Daussy — 2026 —
+        <a href="mailto:edithetjeanlucdaussy@gmail.com">
+            edithetjeanlucdaussy@gmail.com
+        </a>
+    </div>
+
+    <script>
+        // Gestion de la modale d'aide
+        (function() {
+            const modal = document.getElementById("helpModal");
+            const btn = document.getElementById("helpBtn");
+            const closeBtn = document.getElementById("closeHelp");
+
+            if (btn && modal && closeBtn) {
+                // Afficher la fenêtre d'aide
+                btn.onclick = function() {
+                    modal.classList.add("show");
+                };
+
+                // Fermer la fenêtre avec le bouton (X)
+                closeBtn.onclick = function() {
+                    modal.classList.remove("show");
+                };
+
+                // Fermer la fenêtre en cliquant à l'extérieur
+                window.onclick = function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove("show");
+                    }
+                };
+            }
+        })();
+    </script>
+
+    <script>
+        // Sécurité anti-zoom
+        function forceResetZoom() {
+            document.body.style.zoom = "100%";
+
+            let viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+                
+                setTimeout(() => {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                    window.scrollTo(0, 0);
+                }, 50);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', forceResetZoom);
+        window.addEventListener('pageshow', forceResetZoom);
+    </script>
+
+</body>
+</html>

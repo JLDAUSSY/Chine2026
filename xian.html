@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Région de Xi'an</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #map {
+            height: calc(100vh - 120px) !important; /* Même hauteur que voyage.html pour intégrer le titre */
+            width: 100% !important;
+            display: block !important;
+            position: relative;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Région de Xi'an</h1>
+    <a class="homebtn" href="voyage.html">← Retour au voyage</a>
+</header>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // Configuration de la carte Leaflet
+    const map = L.map('map', {
+        scrollWheelZoom: false,  // Désactive le zoom molette standard
+        doubleClickZoom: false,  // Désactive le zoom double-clic natif
+        bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
+    });
+
+    // --- COMPORTEMENT DE ZOOM FLUIDE (CTRL + MOLETTE) ---
+    map.on('wheel', function(e) {
+        if (e.originalEvent.ctrlKey) {
+            // Empêche le défilement de la page entière
+            e.originalEvent.preventDefault();
+            
+            // Détermine la direction du zoom et l'applique
+            if (e.originalEvent.deltaY < 0) {
+                map.zoomIn();
+            } else {
+                map.zoomOut();
+            }
+        }
+    });
+
+    // Fond de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        minZoom: 3, // Permet de dézoomer librement
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Recalcule la taille au chargement pour éviter les bugs d'affichage de Leaflet
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 150);
+
+    // Tableau pour stocker les coordonnées et ajuster automatiquement la vue
+    const points = [];
+
+    // Fonction de création des zones (Marqueurs)
+    function zone(lat, lon, name, set) {
+        points.push([lat, lon]);
+
+        L.marker([lat, lon], {
+            icon: L.divIcon({
+                className: '',
+                html: `<div class="ville-box">${name}</div>`
+            })
+        })
+        .addTo(map)
+        .on('click', (e) => {
+            // Empêche le clic de se propager au fond de carte
+            L.DomEvent.stopPropagation(e);
+            window.location = 'slideshow.html?set=' + set;
+        });
+    }
+
+    // ==========================================
+    // CONFIGURATION DES ZONES (MARQUEURS)
+    // ==========================================
+
+    // Xi'an centre
+    zone(34.282, 108.95, "Xi'an ville", 'xiancentre');
+    
+    // Grande Mosquée
+    zone(34.263, 108.939, "Grande Mosquée", 'grandemosquee');
+
+    // Armée enterrée
+    zone(34.385, 109.273, 'Armée enterrée', 'armeeenterree');
+
+    // Petite pagode
+    zone(34.225, 108.95, 'Petite pagode de l’oie sauvage', 'petitepagode');
+
+    // Grande pagode
+    zone(34.205, 108.97, 'Grande pagode de l’oie sauvage', 'grandepagode');
+
+
+    // ==========================================
+    // CADRAGE INITIAL DYNAMIQUE
+    // ==========================================
+    
+    // Calcule les limites parfaites englobant vos marqueurs
+    const bounds = L.latLngBounds(points);
+    
+    // Applique le cadrage idéal initial au chargement (avec petite marge de 0.08)
+    map.fitBounds(bounds.pad(0.08), {
+        padding: [30, 30]
+    });
+
+    // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
+    // Un double-clic sur le fond de carte réinitialise proprement la vue sur vos marqueurs
+    map.on('dblclick', function() {
+        map.fitBounds(bounds.pad(0.08), { animate: true });
+    });
+
+</script>
+
+</body>
+</html>

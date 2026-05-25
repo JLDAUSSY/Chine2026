@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diaporama</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="slideshow-body">
+
+    <a href="index.html" class="back">← Retour</a>
+
+    <div id="viewer">
+        <img id="img1" class="slide visible">
+        <img id="img2" class="slide">
+    </div>
+
+    <div class="nav left" onclick="prev()">❮</div>
+    <div class="nav right" onclick="next()">❯</div>
+
+    <div id="noteBtn">i</div>
+    <div id="noteBox"></div>
+    <div id="caption"></div>
+
+    <audio id="bgmusic" loop preload="auto"></audio>
+
+    <script src="script.js?v=100"></script>
+
+</body>
+</html>

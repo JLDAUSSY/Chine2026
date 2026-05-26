@@ -496,6 +496,16 @@ police:{
 const notes = {
 
 monthuangshan: {
+
+6: `
+Ce monument est un témoignage typique de la culture des lettrés chinois. Au fil des siècles, les poètes et officiels gravissaient ces montagnes, y ressentaient une profonde connexion spirituelle, et laissaient leur marque (un poème, un nom, une pensée) gravée dans la pierre. Les générations suivantes venaient ensuite lire ces inscriptions, y ajoutant parfois leurs propres commentaires ou restaurant les anciennes pour préserver ce patrimoine littéraire à ciel ouvert.
+Sur la grande dalle inférieure, on lit « Han Jiang Zi » (寒江子) qui signifie « L'Homme du Fleuve Glacé ». C'est très probablement un nom de plume, un pseudonyme (Hao) ou le nom taoïste d'un lettré, d'un poète ou d'un calligraphe venu chercher l'inspiration ou l'isolement dans ces montagnes. Juste à côté, on distingue deux grands caractères plus larges et stylisés, 獨坐 (Dú Zuò), qui signifient « Assis Seul ». C'est une référence classique à la méditation, à la contemplation solitaire face à l'immensité de la nature, un thème récurrent dans la poésie de la dynastie Tang.
+La petite stèle rectangulaire incrustée plus haut, aux caractères dorés sur fond sombre, est un ajout beaucoup plus récent (généralement de la fin du XXe siècle ou du début du XXIe siècle). Elle sert de cartel explicatif : le texte explique l'origine des caractères du bas, qui les a écrits, à quelle époque, et documente les travaux de restauration ou de préservation du site classé
+Le texte explique que « Han Jiang Zi » (寒江子) n'est autre que le pseudonyme taoïste de Jiang Tianyi (江天一) (1603–1647).
+Jiang Tianyi était un célèbre lettré, érudit et calligraphe originaire de la région (le Huizhou / Shexian). C'était un homme d'un immense talent littéraire, profondément attaché aux paysages de Huangshan.
+Le texte supérieur rappelle l'histoire tragique et héroïque derrière ces caractères : lors de la chute de la dynastie Ming et de l'invasion par la dynastie Qing (mandchoue) dans les années 1640, Jiang Tianyi a refusé de se soumettre. Il a activement organisé une armée de résistance locale pour défendre sa patrie. Capturé par les troupes Qing, il a refusé de prêter allégeance au nouvel empereur et a été exécuté en martyr en 1647.
+`,
+
   8: `Vêtu d'une chasuble rouge numérotée (indiquant son enregistrement officiel auprès du parc), d'une casquette orange et de chaussures de marche, il transporte ses charges à l'épaule à l'aide d'une palanche en bambou (Danzilu).
 Deux grands sacs en toile bleue, lourdement chargés (vraisemblablement de marchandises pour les hôtels du sommet ou de déchets redescendus vers la vallée), sont suspendus à chaque extrémité du fléau, maintenant un équilibre précaire à chaque pas.
 ... un esclavage qui a traversé les époques ...`,

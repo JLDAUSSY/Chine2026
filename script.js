@@ -324,20 +324,20 @@ tunxi:{
 },
 
 monthuangshan:{
-1:" ",
+1:"Randonnée au mont Huangshan ... dans la brume",
 2:" ",
 3:" ",
 4:" ",
-5:" ",
-6:" ",
-7:" ",
-8:" ",
+5:"ballet d'imperméables multicolores",
+6:"Les stèles gravées de Huangshan",
+7:"",
+8:"Porteur traditionnel sur les sentiers du mont Huangshan",
 9:" ",
-10:" ",
-11:" ",
-12:" ",
+10:"Transport en chaise à porteurs (Jiaohu) au mont Huangshan",
+11:"tarifs officiels des chaises à porteurs",
+12:"",
 13:" ",
-14:" ",
+14:"stèle des 1600 mètres",
 15:" ",
 
 },
@@ -495,8 +495,23 @@ police:{
 
 const notes = {
 
+monthuangshan: {
+  8: `Vêtu d'une chasuble rouge numérotée (indiquant son enregistrement officiel auprès du parc), d'une casquette orange et de chaussures de marche, il transporte ses charges à l'épaule à l'aide d'une palanche en bambou (Danzilu).
+Deux grands sacs en toile bleue, lourdement chargés (vraisemblablement de marchandises pour les hôtels du sommet ou de déchets redescendus vers la vallée), sont suspendus à chaque extrémité du fléau, maintenant un équilibre précaire à chaque pas.
+... un esclavage qui a traversé les époques ...`,
 
+  10: `autre forme d'esclavage : deux hommes, vêtus d'un uniforme d'une pièce bleu de travail (la tenue officielle des services de transport du parc), unissent leurs forces. Le premier ouvre la marche en portant les perches à l'épaule, tandis que le second maintient fermement l'arrière de la structure pour garder la passagère bien droite dans la pente des escaliers de pierre.`,
 
+  11: `Les tarifs ne se négocient pas au hasard à la tête du client sur les sentiers ; ils sont indexés selon trois critères très précis visibles sur les colonnes des tableaux :
+La distance et le dénivelé : Chaque tronçon d'escalier a un prix fixe défini par le parc, calculé par rapport à la difficulté physique de la portion (montée abrupte ou plat).
+Le type de prise en charge : Les tableaux font la distinction entre un trajet simple (aller simple d'un point A à un point B) et des forfaits spécifiques ou des détours.
+Le poids du visiteur : C'est une particularité importante de la réglementation à Huangshan. La grille tarifaire de base s'applique généralement pour les personnes en dessous d'un certain poids (souvent 80 kg). Au-delà, un supplément tarifaire est appliqué (clairement mentionné dans les petites lignes de notes au bas des tableaux) car l'effort physique demandé aux deux porteurs augmente considérablement.
+
+Quelques indications de prix :
+- Trajets courts (liaisons téléphériques ➡️ sommets proches) : entre 100 ¥ et 200 ¥ (soit environ 13 € à 26 €) pour des petites portions de 1 à 1,5 km reliant les stations de téléphérique aux premiers belvédères.
+- Trajets moyens (vers les grands hôtels de montagne comme le Xihai) : entre 300 ¥ et 450 ¥ (soit environ 40 € à 58 €). C'est le tarif classique pour être transporté depuis les zones d'arrivée des cabines jusqu'aux hôtels situés sur les crêtes (Beihai, Xihai, Paiyun).
+- Trajets longs ou très abrupts (ex: Pic du Lotus ou descentes majeures) : de 600 ¥ jusqu'à plus de 800 ¥ (soit 75 € à 100 € et plus) pour les itinéraires les plus techniques et longs.`
+},
 
 citeinterdite: {
 

@@ -59,6 +59,11 @@
                 <div>Police !</div>
             </a>
         </div>
+
+        <div class="footer-signature">
+            Edith et Jean-Luc Daussy — 2026 — 
+            <a href="mailto:edithetjeanlucdaussy@gmail.com">edithetjeanlucdaussy@gmail.com</a>
+        </div>
     </div>
 
     <div id="helpModal" class="modal">
@@ -103,13 +108,6 @@
         </div>
     </div>
 
-    <div class="footer-signature">
-        Edith et Jean-Luc Daussy — 2026 —
-        <a href="mailto:edithetjeanlucdaussy@gmail.com">
-            edithetjeanlucdaussy@gmail.com
-        </a>
-    </div>
-
     <script>
         // Gestion de la modale d'aide
         (function() {
@@ -118,17 +116,14 @@
             const closeBtn = document.getElementById("closeHelp");
 
             if (btn && modal && closeBtn) {
-                // Afficher la fenêtre d'aide
                 btn.onclick = function() {
                     modal.classList.add("show");
                 };
 
-                // Fermer la fenêtre avec le bouton (X)
                 closeBtn.onclick = function() {
                     modal.classList.remove("show");
                 };
 
-                // Fermer la fenêtre en cliquant à l'extérieur
                 window.onclick = function(event) {
                     if (event.target === modal) {
                         modal.classList.remove("show");
@@ -158,8 +153,7 @@
         window.addEventListener('pageshow', forceResetZoom);
     </script>
 
-
-<script data-goatcounter="https://jldaussygoat.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://jldaussygoat.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 
 </body>
 </html>

@@ -13,7 +13,7 @@ tianshui:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,25,26],
 nankin:[1,3,2,4,5,6,7,8,9,10],
 huangshan:[1],
 hangzhou:[1,2,3,4,5,6,7,8,9,10,11,12],
-shanghai:[1,2,3,4,5,30,6,7,8,9,10,11,12,13,14,15,16,17,29,18,19,20,21,22,23,24,25,26,27,28,29],
+shanghai:[1,2,3,4,5,30,6,7,8,9,10,11,12,13,14,15,16,17,29,18,19,20,21,22,23,24,25,31,26,27,28,29,30],
 
 // pékin détaillé
 
@@ -21,7 +21,7 @@ citeinterdite:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
 templeduciel:[1,2,3,4,5,6,7],
 palaisdete:[1,2,3,4,5,6,7,8,9,10,11,12,13,14],
 mutianyu:[1,2,3,4,5,6,7,8,9,10,11],
-pekinville:[1,2,3,4,5,6,7,8,9],
+pekinville:[1,2,3,4,5,6,7,8,9,10],
 
 // huangshan détaillé
 
@@ -71,6 +71,7 @@ pekinville: {
     7: `locomotive de la classe Shangyou (上游 / Shàngyóu, signifiant « Visée haute » dans le quartier d'art 798`,
     8: `street art dans le quartier d'art 798`,
     9: `street art dans le quartier d'art 798`,
+10: `siège de la CCTV, situé dans le quartier d'affaires (CBD). En raison de sa silhouette singulière, les Pékinois le surnomment affectueusement "Dà Kùchǎ" (大裤衩), le grand pantalon`,
 },
 
 pingyao:{
@@ -203,7 +204,8 @@ shanghai:{
 27:"Monument au Mouvement du 30 Mai (五卅运动纪念碑)",
 28:"statuette d'étude en bronze doré d'une sculpture monumentale publique très célèbre à Shanghai : « L'Homme qui marche » de l'artiste chinois Wang Keping (王克平).",
 29:"jardin Yu, intérieur du Pavillon Jingguan (Jingguan Ting / 静观厅), ou Pavillon de la Contemplation Sereine",
-30:"East Nanjing Road, une partie des 1 408 975 000 chinois",
+30:"East Nanjing Road, une partie des 1 408 975 000 chinois 😄",
+31:"au Fairmont Peace Hotel : bas-relief représentant une scène historique animée du Bund",
 },
 
 // pékin détaillé
@@ -844,6 +846,12 @@ De part et d'autre de la colombe, incrustés dans les murs en boiseries sombres,
 Ce monument rappelle un tournant crucial de l'histoire moderne chinoise. Au début du $XX^e$ siècle, la Chine subit le régime des « Traités inégaux », qui permettent aux puissances étrangères d'ouvrir librement des usines et des comptoirs commerciaux dans des zones échappant à la souveraineté chinoise : les concessions.Le 30 mai 1925, une immense manifestation d'ouvriers et d'étudiants se rassemble sur la rue de Nankin (Nanjing Road). Ils protestent contre les conditions de travail inhumaines et surtout contre le meurtre d'un leader syndical chinois, abattu peu avant par un contremaître dans une filature de coton sous capitaux japonais. Lors de ce rassemblement, la police de la Concession internationale, alors dirigée par les Britanniques, ouvre le feu sur la foule désarmée, faisant de nombreux morts. Ce massacre déclenche une vague de grèves sans précédent et un immense sursaut nationaliste à travers tout le pays.
 `,
 
+31:`
+bas-relief en argent/stuc situé dans le hall octogonal (le hall de la rotonde) de l'emblématique Fairmont Peace Hotel (historiquement connu sous le nom de Cathay Hotel ou Sassoon House), situé sur le Bund à Shanghai.
+Le relief dépeint une scène historique animée du Bund (le quai célèbre de Shanghai) durant les années 1920-1930. On y distingue l'architecture Art déco classique du front de mer, d'anciennes voitures d'époque, des pousse-pousse et des passants.
+Il fait partie d'une série de grands panneaux muraux sculptés qui ornent la magnifique rotonde centrale en marbre de l'hôtel, juste sous sa coupole de verre jaune.
+C'est un superbe hommage à l'âge d'or de la ville et à l'histoire même de ce bâtiment légendaire inauguré en 1929.
+`,
 },
 
 

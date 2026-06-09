@@ -32,13 +32,14 @@
 
 <div id="map"></div>
 
+<!-- Scripts de base Leaflet ET du plugin Leaflet-GPX pour lire votre fichier -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/2.1.2/gpx.min.js"></script>
 
 <script>
     // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: true,   // CORRECTION : Zoom molette natif pour éviter le zoom de toute la page HTML
+        scrollWheelZoom: true,   // CORRECTION : Zoom molette natif pour éviter le bug du zoom de page entier
         doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
         bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
     });
@@ -95,16 +96,29 @@
 
 
     // ==========================================
+    // CADRAGE INITIAL & PRE-CALCUL DES LIMITES
+    // ==========================================
+    
+    // Calcule les limites englobant vos points d'intérêt fixes
+    const bounds = L.latLngBounds(points);
+    
+    // Premier cadrage basé sur les marqueurs en attendant le chargement du GPX
+    map.fitBounds(bounds.pad(0.15), {
+        padding: [30, 30]
+    });
+
+
+    // ==========================================
     // GESTION ET AFFICHAGE DE LA TRACE GPX
     // ==========================================
     
-    // CORRECTION : Création d'un panneau spécial pour forcer la trace GPX au premier plan,
+    // Création d'un panneau spécial pour forcer la trace GPX au premier plan,
     // afin qu'elle ne soit pas cachée derrière l'étiquette "Mont Huangshan"
     map.createPane('gpxPane');
     map.getPane('gpxPane').style.zIndex = 650; // Plus haut que les marqueurs (généralement à 600)
     map.getPane('gpxPane').style.pointerEvents = 'none'; // Permet de cliquer à travers le tracé si besoin
 
-    // Nom de votre fichier GPX (à placer dans le même dossier sur GitHub)
+    // Nom exact de votre fichier GPX (scrupuleusement identique à celui sur GitHub)
     const gpxUrl = 'trace.gpx'; 
 
     new L.GPX(gpxUrl, {
@@ -125,25 +139,16 @@
         // Dès que le GPX est chargé, on récupère ses limites géographiques
         const gpxBounds = e.target.getBounds();
         
-        // On fusionne les limites des marqueurs (points) avec celles du tracé GPX
+        // On fusionne les limites des marqueurs avec celles du tracé GPX
         bounds.extend(gpxBounds);
         
-        // On réajuste dynamiquement la carte pour tout englober parfaitement
-        map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
+        // CORRECTION : Force le recalcul immédiat et propre du cadrage complet
+        setTimeout(() => {
+            map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
+            map.invalidateSize();
+        }, 200);
     }).addTo(map);
 
-
-    // ==========================================
-    // CADRAGE INITIAL DYNAMIQUE AUTOMATIQUE
-    // ==========================================
-    
-    // Calcule les limites englobant vos points d'intérêt fixes
-    const bounds = L.latLngBounds(points);
-    
-    // Premier cadrage basé sur les marqueurs en attendant le chargement du GPX
-    map.fitBounds(bounds.pad(0.15), {
-        padding: [30, 30]
-    });
 
     // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
     // Un double-clic sur le fond de carte réinitialise proprement la vue globale (marqueurs + trace)

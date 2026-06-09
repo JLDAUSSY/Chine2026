@@ -11,7 +11,7 @@
 
     <style>
         #map {
-            height: calc(100vh - 120px) !important; /* Même hauteur pour intégrer le titre harmonieusement */
+            height: calc(100vh - 120px) !important;
             width: 100% !important;
             display: block !important;
             position: relative;
@@ -33,22 +33,20 @@
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/2.1.2/gpx.min.js"></script>
 
 <script>
     // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: false,  // Désactive le zoom molette standard (géré par CTRL plus bas)
-        doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
-        bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
+        scrollWheelZoom: false,  
+        doubleClickZoom: false,  
+        bounceAtZoomLimits: false 
     });
 
     // --- COMPORTEMENT DE ZOOM FLUIDE (CTRL + MOLETTE) ---
     map.on('wheel', function(e) {
         if (e.originalEvent.ctrlKey) {
-            // Empêche le défilement de la page entière
             e.originalEvent.preventDefault();
-            
-            // Détermine la direction du zoom et l'applique
             if (e.originalEvent.deltaY < 0) {
                 map.zoomIn();
             } else {
@@ -60,11 +58,11 @@
     // Fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        minZoom: 3, // Permet de dézoomer librement
+        minZoom: 3, 
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Recalcule la taille au chargement pour éviter les bugs d'affichage de Leaflet
+    // Recalcule la taille au chargement pour éviter les bugs d'affichage
     setTimeout(() => {
         map.invalidateSize();
     }, 150);
@@ -74,7 +72,6 @@
 
     // Fonction de création des zones (Marqueurs)
     function zone(lat, lon, name, set) {
-        // Ajouter le point au tableau pour le calcul automatique des limites
         points.push([lat, lon]);
 
         L.marker([lat, lon], {
@@ -85,7 +82,6 @@
         })
         .addTo(map)
         .on('click', (e) => {
-            // Empêche le clic de se propager au fond de carte
             L.DomEvent.stopPropagation(e);
             window.location = 'slideshow.html?set=' + set;
         });
@@ -94,34 +90,53 @@
     // ==========================================
     // CONFIGURATION DES ZONES (MARQUEURS)
     // ==========================================
-
-    // Hongcun
     zone(30.11, 117.99, 'Hongcun', 'hongcun');
-
-    // Xidi
     zone(29.91, 117.99, 'Xidi', 'xidi');
-
-    // Tunxi
     zone(29.71, 118.31, 'Tunxi', 'tunxi');
-
-    // Mont Huangshan
     zone(30.13, 118.17, 'Mont Huangshan', 'monthuangshan');
+
+
+    // ==========================================
+    // CHARGEMENT DE LA TRACE GPX
+    // ==========================================
+    
+    // Remplacez 'trace.gpx' par le nom de votre fichier GPX (qui doit être dans le même dossier)
+    const gpxUrl = 'trace.gpx'; 
+
+    new L.GPX(gpxUrl, {
+        async: true,
+        marker_options: {
+            startIconUrl: null, // On masque les icônes de départ/arrivée par défaut du plugin
+            endIconUrl: null,   // pour éviter de surcharger vos marqueurs personnalisés
+            shadowUrl: null
+        },
+        polyline_options: {
+            color: '#e74c3c', // Couleur de la trace (Rouge ici)
+            opacity: 0.75,
+            weight: 4,
+            lineCap: 'round'
+        }
+    }).on('loaded', function(e) {
+        // Optionnel : Si vous voulez que la carte s'ajuste à la trace ET aux marqueurs,
+        // on ajoute les limites du GPX au calcul existant.
+        const gpxBounds = e.target.getBounds();
+        bounds.extend(gpxBounds);
+        
+        // On applique le cadrage final combiné
+        map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
+    }).addTo(map);
 
 
     // ==========================================
     // CADRAGE INITIAL DYNAMIQUE AUTOMATIQUE
     // ==========================================
-    
-    // Calcule les limites parfaites englobant vos points d'intérêt à Huangshan
     const bounds = L.latLngBounds(points);
     
-    // Applique le cadrage au chargement (avec une marge de 0.15 pour aérer l'affichage des villages)
     map.fitBounds(bounds.pad(0.15), {
         padding: [30, 30]
     });
 
     // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
-    // Un double-clic sur le fond de carte réinitialise proprement la vue sur la région
     map.on('dblclick', function() {
         map.fitBounds(bounds.pad(0.15), { animate: true });
     });

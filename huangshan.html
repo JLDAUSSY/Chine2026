@@ -11,7 +11,7 @@
 
     <style>
         #map {
-            height: calc(100vh - 120px) !important;
+            height: calc(100vh - 120px) !important; /* Même hauteur pour intégrer le titre harmonieusement */
             width: 100% !important;
             display: block !important;
             position: relative;
@@ -38,31 +38,19 @@
 <script>
     // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: false,  
-        doubleClickZoom: false,  
-        bounceAtZoomLimits: false 
-    });
-
-    // --- COMPORTEMENT DE ZOOM FLUIDE (CTRL + MOLETTE) ---
-    map.on('wheel', function(e) {
-        if (e.originalEvent.ctrlKey) {
-            e.originalEvent.preventDefault();
-            if (e.originalEvent.deltaY < 0) {
-                map.zoomIn();
-            } else {
-                map.zoomOut();
-            }
-        }
+        scrollWheelZoom: true,   // CORRECTION : Zoom molette natif pour éviter le zoom de toute la page HTML
+        doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
+        bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
     });
 
     // Fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        minZoom: 3, 
+        minZoom: 3, // Permet de dézoomer librement
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Recalcule la taille au chargement pour éviter les bugs d'affichage
+    // Recalcule la taille au chargement pour éviter les bugs d'affichage de Leaflet
     setTimeout(() => {
         map.invalidateSize();
     }, 150);
@@ -72,6 +60,7 @@
 
     // Fonction de création des zones (Marqueurs)
     function zone(lat, lon, name, set) {
+        // Ajouter le point au tableau pour le calcul automatique des limites
         points.push([lat, lon]);
 
         L.marker([lat, lon], {
@@ -82,6 +71,7 @@
         })
         .addTo(map)
         .on('click', (e) => {
+            // Empêche le clic de se propager au fond de carte
             L.DomEvent.stopPropagation(e);
             window.location = 'slideshow.html?set=' + set;
         });
@@ -90,39 +80,55 @@
     // ==========================================
     // CONFIGURATION DES ZONES (MARQUEURS)
     // ==========================================
+
+    // Hongcun
     zone(30.11, 117.99, 'Hongcun', 'hongcun');
+
+    // Xidi
     zone(29.91, 117.99, 'Xidi', 'xidi');
+
+    // Tunxi
     zone(29.71, 118.31, 'Tunxi', 'tunxi');
+
+    // Mont Huangshan
     zone(30.13, 118.17, 'Mont Huangshan', 'monthuangshan');
 
 
     // ==========================================
-    // CHARGEMENT DE LA TRACE GPX
+    // GESTION ET AFFICHAGE DE LA TRACE GPX
     // ==========================================
     
-    // Remplacez 'trace.gpx' par le nom de votre fichier GPX (qui doit être dans le même dossier)
+    // CORRECTION : Création d'un panneau spécial pour forcer la trace GPX au premier plan,
+    // afin qu'elle ne soit pas cachée derrière l'étiquette "Mont Huangshan"
+    map.createPane('gpxPane');
+    map.getPane('gpxPane').style.zIndex = 650; // Plus haut que les marqueurs (généralement à 600)
+    map.getPane('gpxPane').style.pointerEvents = 'none'; // Permet de cliquer à travers le tracé si besoin
+
+    // Nom de votre fichier GPX (à placer dans le même dossier sur GitHub)
     const gpxUrl = 'trace.gpx'; 
 
     new L.GPX(gpxUrl, {
         async: true,
         marker_options: {
-            startIconUrl: null, // On masque les icônes de départ/arrivée par défaut du plugin
-            endIconUrl: null,   // pour éviter de surcharger vos marqueurs personnalisés
+            startIconUrl: null, // Masque les icônes de départ par défaut du plugin
+            endIconUrl: null,   // afin de ne pas surcharger vos propres marqueurs de villages
             shadowUrl: null
         },
         polyline_options: {
-            color: '#e74c3c', // Couleur de la trace (Rouge ici)
-            opacity: 0.75,
-            weight: 4,
-            lineCap: 'round'
+            color: '#e74c3c',   // Couleur de la trace (Rouge)
+            opacity: 0.85,      // Opacité de la ligne
+            weight: 5,          // Épaisseur pour qu'elle soit bien visible
+            lineCap: 'round',
+            pane: 'gpxPane'     // Associe la ligne au panneau de premier plan créé ci-dessus
         }
     }).on('loaded', function(e) {
-        // Optionnel : Si vous voulez que la carte s'ajuste à la trace ET aux marqueurs,
-        // on ajoute les limites du GPX au calcul existant.
+        // Dès que le GPX est chargé, on récupère ses limites géographiques
         const gpxBounds = e.target.getBounds();
+        
+        // On fusionne les limites des marqueurs (points) avec celles du tracé GPX
         bounds.extend(gpxBounds);
         
-        // On applique le cadrage final combiné
+        // On réajuste dynamiquement la carte pour tout englober parfaitement
         map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
     }).addTo(map);
 
@@ -130,13 +136,17 @@
     // ==========================================
     // CADRAGE INITIAL DYNAMIQUE AUTOMATIQUE
     // ==========================================
+    
+    // Calcule les limites englobant vos points d'intérêt fixes
     const bounds = L.latLngBounds(points);
     
+    // Premier cadrage basé sur les marqueurs en attendant le chargement du GPX
     map.fitBounds(bounds.pad(0.15), {
         padding: [30, 30]
     });
 
     // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
+    // Un double-clic sur le fond de carte réinitialise proprement la vue globale (marqueurs + trace)
     map.on('dblclick', function() {
         map.fitBounds(bounds.pad(0.15), { animate: true });
     });

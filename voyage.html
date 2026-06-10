@@ -23,10 +23,6 @@
   margin-top: 0;
 }
 
-/* =========================
-   PROVINCE LABEL (AGRANDI)
-========================= */
-
 .province-label {
   background: transparent;
   border: none;
@@ -38,34 +34,23 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
   white-space: nowrap;
   pointer-events: none;
 
   font-size: 19.5px;
   font-weight: 700;
-
   color: #111;
-
   text-shadow: 0 0 4px rgba(255,255,255,0.85);
 
   opacity: 0;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* =========================
-   ROUTE
-========================= */
-
 .route-line {
   color: #1f2a44;
   weight: 3;
   opacity: 0.85;
 }
-
-/* =========================
-   HÔTELS
-========================= */
 
 .custom-hotel-icon {
   background: none !important;
@@ -90,10 +75,6 @@
 
 var map = L.map('map')
 
-// ============================
-// LIMITES
-// ============================
-
 var southWest = L.latLng(28.523037517192364, 104.88364248831648)
 var northEast = L.latLng(40.96313757261032, 122.5)
 
@@ -108,7 +89,6 @@ setTimeout(() => {
   map.invalidateSize()
 }, 150)
 
-// fond
 L.tileLayer(
 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 {
@@ -116,10 +96,6 @@ maxZoom:18,
 attribution:'© OpenStreetMap'
 }
 ).addTo(map)
-
-// ============================
-// NAVIGATION
-// ============================
 
 function go(set){
 
@@ -141,10 +117,6 @@ return
 window.location.href='slideshow.html?set='+set
 }
 
-// ============================
-// VILLES
-// ============================
-
 function ville(lat, lon, name, set){
 
 var label = L.marker([lat,lon], {
@@ -159,10 +131,6 @@ go(set)
 })
 
 }
-
-// ============================
-// HÔTELS
-// ============================
 
 function hotel(lat, lon){
 
@@ -218,6 +186,12 @@ hotel(37.207158, 112.180989);
 // Tianshui hotel
 hotel(34.579792, 105.746015);
 
+// Ruilan Hotel Nankin
+hotel(32.035256, 118.805144);
+
+// Hangzhou
+hotel(30.275719, 120.123965);
+
 // ============================
 // ROUTE
 // ============================
@@ -256,17 +230,12 @@ opacity:0.85
 })
 })
 
-// ============================
-// PROVINCES
-// ============================
-
 const geo = topojson.feature(
 provincesData,
 provincesData.objects.provinces
 )
 
 const baseLayer = L.geoJSON(geo, {
-
 style: function(){
 return {
 color:'#000',
@@ -275,11 +244,9 @@ opacity:0.5,
 fillOpacity:0
 }
 }
-
 }).addTo(map)
 
 const mainLayer = L.geoJSON(geo, {
-
 style: function(){
 return {
 color:'#000',
@@ -289,7 +256,6 @@ fillColor:'#fff',
 fillOpacity:0.02
 }
 },
-
 onEachFeature: function(feature, layer){
 
 const center = layer.getBounds().getCenter()
@@ -354,7 +320,6 @@ name.style.transform = 'translate(-50%, -50%) scale(1)'
 })
 
 }
-
 }).addTo(map)
 
 </script>

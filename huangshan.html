@@ -11,7 +11,7 @@
 
     <style>
         #map {
-            height: calc(100vh - 120px) !important; /* Même hauteur pour intégrer le titre harmonieusement */
+            height: calc(100vh - 120px) !important;
             width: 100% !important;
             display: block !important;
             position: relative;
@@ -19,6 +19,12 @@
         body {
             margin: 0;
             padding: 0;
+        }
+
+        .custom-label-hotel {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
         }
     </style>
 </head>
@@ -39,15 +45,15 @@
 <script>
     // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: true,   // CORRECTION : Zoom molette natif pour éviter le bug du zoom de page entier
-        doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
-        bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
+        scrollWheelZoom: true,
+        doubleClickZoom: false,
+        bounceAtZoomLimits: false
     });
 
     // Fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        minZoom: 3, // Permet de dézoomer librement
+        minZoom: 3,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
@@ -61,7 +67,7 @@
 
     // Fonction de création des zones (Marqueurs)
     function zone(lat, lon, name, set) {
-        // Ajouter le point au tableau pour le calcul automatique des limites
+
         points.push([lat, lon]);
 
         L.marker([lat, lon], {
@@ -72,10 +78,36 @@
         })
         .addTo(map)
         .on('click', (e) => {
-            // Empêche le clic de se propager au fond de carte
             L.DomEvent.stopPropagation(e);
             window.location = 'slideshow.html?set=' + set;
         });
+    }
+
+    // Fonction hôtel (icône seule)
+    function hotel(lat, lon) {
+
+        points.push([lat, lon]);
+
+        const iconSvg = `
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="32"
+                 height="32"
+                 fill="#D32F2F">
+                <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+            </svg>
+        `;
+
+        const hotelMarker = L.marker([lat, lon], {
+            icon: L.divIcon({
+                className: 'custom-label-hotel',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                html: iconSvg
+            })
+        }).addTo(map);
+
+        hotelMarker.setZIndexOffset(-100);
     }
 
     // ==========================================
@@ -94,66 +126,70 @@
     // Mont Huangshan
     zone(30.13, 118.17, 'Mont Huangshan - la rando', 'monthuangshan');
 
+    // ==========================================
+    // HÔTELS
+    // ==========================================
+
+    // Mild Spring Boutique Hotel
+    hotel(29.708083, 118.292702);
+
+    // Hongcun Nanhu Guanyuan Designer Lake View Resort Hotel
+    hotel(30.003527, 117.986552);
 
     // ==========================================
     // CADRAGE INITIAL & PRE-CALCUL DES LIMITES
     // ==========================================
-    
-    // Calcule les limites englobant vos points d'intérêt fixes
+
     const bounds = L.latLngBounds(points);
-    
-    // Premier cadrage basé sur les marqueurs en attendant le chargement du GPX
+
     map.fitBounds(bounds.pad(0.15), {
         padding: [30, 30]
     });
 
-
     // ==========================================
     // GESTION ET AFFICHAGE DE LA TRACE GPX
     // ==========================================
-    
-    // Création d'un panneau spécial pour forcer la trace GPX au premier plan,
-    // afin qu'elle ne soit pas cachée derrière l'étiquette "Mont Huangshan"
-    map.createPane('gpxPane');
-    map.getPane('gpxPane').style.zIndex = 650; // Plus haut que les marqueurs (généralement à 600)
-    map.getPane('gpxPane').style.pointerEvents = 'none'; // Permet de cliquer à travers le tracé si besoin
 
-    // Nom exact de votre fichier GPX (scrupuleusement identique à celui sur GitHub)
-    const gpxUrl = 'trace.gpx'; 
+    map.createPane('gpxPane');
+    map.getPane('gpxPane').style.zIndex = 650;
+    map.getPane('gpxPane').style.pointerEvents = 'none';
+
+    const gpxUrl = 'trace.gpx';
 
     new L.GPX(gpxUrl, {
         async: true,
         marker_options: {
-            startIconUrl: null, // Masque les icônes de départ par défaut du plugin
-            endIconUrl: null,   // afin de ne pas surcharger vos propres marqueurs de villages
+            startIconUrl: null,
+            endIconUrl: null,
             shadowUrl: null
         },
         polyline_options: {
-            color: '#e74c3c',   // Couleur de la trace (Rouge)
-            opacity: 0.85,      // Opacité de la ligne
-            weight: 5,          // Épaisseur pour qu'elle soit bien visible
+            color: '#e74c3c',
+            opacity: 0.85,
+            weight: 5,
             lineCap: 'round',
-            pane: 'gpxPane'     // Associe la ligne au panneau de premier plan créé ci-dessus
+            pane: 'gpxPane'
         }
     }).on('loaded', function(e) {
-        // Dès que le GPX est chargé, on récupère ses limites géographiques
+
         const gpxBounds = e.target.getBounds();
-        
-        // On fusionne les limites des marqueurs avec celles du tracé GPX
+
         bounds.extend(gpxBounds);
-        
-        // CORRECTION : Force le recalcul immédiat et propre du cadrage complet
+
         setTimeout(() => {
-            map.fitBounds(bounds.pad(0.15), { padding: [30, 30] });
+            map.fitBounds(bounds.pad(0.15), {
+                padding: [30, 30]
+            });
             map.invalidateSize();
         }, 200);
+
     }).addTo(map);
 
-
-    // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
-    // Un double-clic sur le fond de carte réinitialise proprement la vue globale (marqueurs + trace)
+    // Réinitialisation par double-clic
     map.on('dblclick', function() {
-        map.fitBounds(bounds.pad(0.15), { animate: true });
+        map.fitBounds(bounds.pad(0.15), {
+            animate: true
+        });
     });
 
 </script>

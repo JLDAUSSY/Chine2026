@@ -37,24 +37,9 @@
 <script>
     // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: false,  // Désactive le zoom molette standard (géré par CTRL plus bas)
+        scrollWheelZoom: true,   // CORRECTION : Active le zoom molette standard sans toucher au zoom de la page HTML
         doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
         bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
-    });
-
-    // --- COMPORTEMENT DE ZOOM FLUIDE (CTRL + MOLETTE) ---
-    map.on('wheel', function(e) {
-        if (e.originalEvent.ctrlKey) {
-            // Empêche le défilement de la page entière
-            e.originalEvent.preventDefault();
-            
-            // Détermine la direction du zoom et l'applique
-            if (e.originalEvent.deltaY < 0) {
-                map.zoomIn();
-            } else {
-                map.zoomOut();
-            }
-        }
     });
 
     // Fond de carte OpenStreetMap

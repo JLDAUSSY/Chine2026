@@ -11,7 +11,7 @@
 
     <style>
         #map {
-            height: calc(100vh - 120px) !important; /* Même hauteur que voyage.html pour intégrer le titre */
+            height: calc(100vh - 120px) !important;
             width: 100% !important;
             display: block !important;
             position: relative;
@@ -35,29 +35,24 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-    // Configuration de la carte Leaflet
     const map = L.map('map', {
-        scrollWheelZoom: true,   // CORRECTION : Active le zoom molette standard sans toucher au zoom global de la page HTML
-        doubleClickZoom: false,  // Désactive le zoom double-clic natif pour éviter les conflits
-        bounceAtZoomLimits: false // Désactive l'effet élastique au zoom
+        scrollWheelZoom: true,
+        doubleClickZoom: false,
+        bounceAtZoomLimits: false
     });
 
-    // Fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        minZoom: 3, // Permet de dézoomer librement
+        minZoom: 3,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Recalcule la taille au chargement pour éviter les bugs d'affichage de Leaflet
     setTimeout(() => {
         map.invalidateSize();
     }, 150);
 
-    // Tableau pour stocker les coordonnées et ajuster automatiquement la vue
     const points = [];
 
-    // Fonction de création des zones (Marqueurs)
     function zone(lat, lon, name, set) {
         points.push([lat, lon]);
 
@@ -69,46 +64,64 @@
         })
         .addTo(map)
         .on('click', (e) => {
-            // Empêche le clic de se propager au fond de carte
             L.DomEvent.stopPropagation(e);
             window.location = 'slideshow.html?set=' + set;
         });
     }
 
-    // ==========================================
-    // CONFIGURATION DES ZONES (MARQUEURS)
-    // ==========================================
+    // ICÔNE HÔTEL (SANS TEXTE)
+    function hotel(lat, lon) {
 
-    // Xi'an centre
+        points.push([lat, lon]);
+
+        const iconSvg = `
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="32"
+                 height="32"
+                 fill="#D32F2F">
+                <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+            </svg>
+        `;
+
+        const hotelMarker = L.marker([lat, lon], {
+            icon: L.divIcon({
+                className: '',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                html: iconSvg
+            })
+        }).addTo(map);
+
+        hotelMarker.setZIndexOffset(-100);
+    }
+
+    // =========================
+    // ZONES
+    // =========================
+
     zone(34.282, 108.95, "Xi'an ville", 'xiancentre');
-    
-    // Grande Mosquée
     zone(34.263, 108.939, "Grande Mosquée", 'grandemosquee');
-
-    // Armée enterrée
     zone(34.385, 109.273, 'Armée enterrée', 'armeeenterree');
-
-    // Petite pagode
     zone(34.225, 108.95, 'Petite pagode de l’oie sauvage', 'petitepagode');
-
-    // Grande pagode
     zone(34.205, 108.97, 'Grande pagode de l’oie sauvage', 'grandepagode');
 
+    // =========================
+    // HÔTEL AJOUTÉ
+    // =========================
 
-    // ==========================================
-    // CADRAGE INITIAL DYNAMIQUE -
-    // ==========================================
-    
-    // Calcule les limites parfaites englobant vos marqueurs
+    hotel(34.261329, 108.946097);
+
+    // =========================
+    // CADRAGE
+    // =========================
+
     const bounds = L.latLngBounds(points);
-    
-    // Applique le cadrage idéal initial au chargement (avec petite marge de 0.08)
+
     map.fitBounds(bounds.pad(0.08), {
         padding: [30, 30]
     });
 
-    // --- COMPORTEMENT DOUBLE-CLIC (RÉINITIALISATION) ---
-    // Un double-clic sur le fond de carte réinitialise proprement la vue sur vos marqueurs
     map.on('dblclick', function() {
         map.fitBounds(bounds.pad(0.08), { animate: true });
     });

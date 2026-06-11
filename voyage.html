@@ -56,6 +56,49 @@
   background: none !important;
   border: none !important;
   box-shadow: none !important;
+  cursor: pointer;
+}
+
+/* Style de la boîte modale pour l'affichage de l'image */
+.hotel-modal {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  z-index: 9999; /* Toujours au-dessus de la carte Leaflet */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Conteneur de l'image pour le centrage */
+.hotel-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 85%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border: 3px solid #fff;
+  border-radius: 4px;
+}
+
+/* Bouton de fermeture (la croix en haut à droite) */
+.hotel-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.hotel-modal-close:hover {
+  color: #D32F2F;
 }
 
 </style>
@@ -70,6 +113,11 @@
 </header>
 
 <div id="map"></div>
+
+<div id="hotelModal" class="hotel-modal">
+  <span class="hotel-modal-close" id="modalClose">&times;</span>
+  <img class="hotel-modal-content" id="modalImg" src="" alt="Photo de l'hôtel">
+</div>
 
 <script>
 
@@ -132,7 +180,24 @@ go(set)
 
 }
 
-function hotel(lat, lon){
+// Gestionnaires d'événements pour la boîte modale
+const modal = document.getElementById('hotelModal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.getElementById('modalClose');
+
+modalClose.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// Permet aussi de fermer en cliquant n'importe où sur le fond sombre
+modal.addEventListener('click', function(e) {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// Modification de la fonction hotel pour accepter une image
+function hotel(lat, lon, imageName){
 
 const iconSvg = `
 <svg xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +208,7 @@ const iconSvg = `
     <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
 </svg>`;
 
-L.marker([lat, lon], {
+var hotelMarker = L.marker([lat, lon], {
     icon: L.divIcon({
         className: 'custom-hotel-icon',
         iconSize: [28, 28],
@@ -151,6 +216,14 @@ L.marker([lat, lon], {
         html: iconSvg
     })
 }).addTo(map);
+
+// Si un nom d'image est renseigné, on ajoute l'événement de clic
+if (imageName) {
+  hotelMarker.on('click', function() {
+    modalImg.src = 'hotels/' + imageName;
+    modal.style.display = 'block';
+  });
+}
 
 }
 
@@ -180,8 +253,8 @@ ville(...villes.shanghai,'Shanghai','shanghai')
 // HÔTELS
 // ============================
 
-// Píngyáo xiáng shēngyuán kèzhàn
-hotel(37.207158, 112.180989);
+// Píngyáo xiáng shēngyuán kèzhàn -> Ajout de 'pingyao.jpg'
+hotel(37.207158, 112.180989, 'pingyao.jpg');
 
 // Tianshui hotel
 hotel(34.579792, 105.746015);

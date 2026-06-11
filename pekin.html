@@ -26,6 +26,49 @@
             background: none !important;
             border: none !important;
             box-shadow: none !important;
+            cursor: pointer;
+        }
+
+        /* Style de la boîte modale pour l'affichage des images d'hôtels */
+        .hotel-modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 9999; /* Au-dessus de la carte Leaflet */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Conteneur de l'image */
+        .hotel-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 85%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 3px solid #fff;
+            border-radius: 4px;
+        }
+
+        /* Bouton de fermeture (croix en haut à droite) */
+        .hotel-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .hotel-modal-close:hover {
+            color: #D32F2F;
         }
     </style>
 </head>
@@ -38,6 +81,11 @@
 </header>
 
 <div id="map"></div>
+
+<div id="hotelModal" class="hotel-modal">
+    <span class="hotel-modal-close" id="modalClose">&times;</span>
+    <img class="hotel-modal-content" id="modalImg" src="" alt="Photo de l'hôtel">
+</div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -84,7 +132,23 @@
         marker.setZIndexOffset(1000);
     }
 
-    function hotel(lat, lon) {
+    // Gestionnaires d'événements pour la boîte modale
+    const modal = document.getElementById('hotelModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    modalClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Modification de la fonction hotel pour accepter le nom de l'image
+    function hotel(lat, lon, imageName) {
 
         points.push([lat, lon]);
 
@@ -108,6 +172,14 @@
         }).addTo(map);
 
         hotelMarker.setZIndexOffset(-100);
+
+        if (imageName) {
+            hotelMarker.on('click', function(e) {
+                L.DomEvent.stopPropagation(e); // Empêche de déclencher des clics sur la carte
+                modalImg.src = 'hotels/' + imageName;
+                modal.style.display = 'block';
+            });
+        }
     }
 
     // =========================
@@ -128,8 +200,11 @@
     // HÔTELS
     // =========================
 
-    hotel(39.937442, 116.376398);
-    hotel(39.931426, 116.413445);
+    // Hôtel Ouest -> shichahai.jpg
+    hotel(39.937442, 116.376398, 'shichahai.jpg');
+    
+    // Hôtel Est -> dragon.jpg
+    hotel(39.931426, 116.413445, 'dragon.jpg');
 
     // =========================
     // CADRAGE AUTOMATIQUE

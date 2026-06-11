@@ -20,6 +20,55 @@
             margin: 0;
             padding: 0;
         }
+
+        .custom-label-hotel {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            cursor: pointer;
+        }
+
+        /* Style de la boîte modale pour l'affichage de l'image de l'hôtel */
+        .hotel-modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 9999; /* Reste bien au-dessus de la carte Leaflet */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Conteneur de l'image pour le centrage */
+        .hotel-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 85%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 3px solid #fff;
+            border-radius: 4px;
+        }
+
+        /* Bouton de fermeture (la croix en haut à droite) */
+        .hotel-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .hotel-modal-close:hover {
+            color: #D32F2F;
+        }
     </style>
 </head>
 
@@ -31,6 +80,11 @@
 </header>
 
 <div id="map"></div>
+
+<div id="hotelModal" class="hotel-modal">
+    <span class="hotel-modal-close" id="modalClose">&times;</span>
+    <img class="hotel-modal-content" id="modalImg" src="" alt="Photo de l'hôtel">
+</div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -69,8 +123,24 @@
         });
     }
 
-    // ICÔNE HÔTEL (SANS TEXTE)
-    function hotel(lat, lon) {
+    // Gestionnaires d'événements pour la boîte modale
+    const modal = document.getElementById('hotelModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    modalClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Fermeture alternative en cliquant sur l'arrière-plan sombre
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Modification de la fonction hotel pour accepter une image en paramètre
+    function hotel(lat, lon, imageName) {
 
         points.push([lat, lon]);
 
@@ -86,7 +156,7 @@
 
         const hotelMarker = L.marker([lat, lon], {
             icon: L.divIcon({
-                className: '',
+                className: 'custom-label-hotel',
                 iconSize: [32, 32],
                 iconAnchor: [16, 16],
                 html: iconSvg
@@ -94,6 +164,15 @@
         }).addTo(map);
 
         hotelMarker.setZIndexOffset(-100);
+
+        // Si le nom du fichier image est transmis, on écoute le clic
+        if (imageName) {
+            hotelMarker.on('click', function(e) {
+                L.DomEvent.stopPropagation(e); // Bloque la propagation du clic vers la carte
+                modalImg.src = 'hotels/' + imageName;
+                modal.style.display = 'block';
+            });
+        }
     }
 
     // =========================
@@ -107,10 +186,10 @@
     zone(34.205, 108.97, 'Grande pagode de l’oie sauvage', 'grandepagode');
 
     // =========================
-    // HÔTEL AJOUTÉ
+    // HÔTEL AVEC PHOTO MODAL
     // =========================
 
-    hotel(34.261329, 108.946097);
+    hotel(34.261329, 108.946097, 'xian.jpg');
 
     // =========================
     // CADRAGE -

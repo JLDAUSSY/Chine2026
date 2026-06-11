@@ -25,6 +25,49 @@
             background: none !important;
             border: none !important;
             box-shadow: none !important;
+            cursor: pointer;
+        }
+
+        /* Style de la boîte modale pour l'affichage de l'image de l'hôtel */
+        .hotel-modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 9999; /* Reste au-dessus de la carte Leaflet et de la trace GPX */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Conteneur de l'image pour le centrage */
+        .hotel-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 85%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 3px solid #fff;
+            border-radius: 4px;
+        }
+
+        /* Bouton de fermeture (la croix en haut à droite) */
+        .hotel-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .hotel-modal-close:hover {
+            color: #D32F2F;
         }
     </style>
 </head>
@@ -38,7 +81,11 @@
 
 <div id="map"></div>
 
-<!-- Scripts de base Leaflet ET du plugin Leaflet-GPX pour lire votre fichier -->
+<div id="hotelModal" class="hotel-modal">
+    <span class="hotel-modal-close" id="modalClose">&times;</span>
+    <img class="hotel-modal-content" id="modalImg" src="" alt="Photo de l'hôtel">
+</div>
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/2.1.2/gpx.min.js"></script>
 
@@ -83,8 +130,23 @@
         });
     }
 
-    // Fonction hôtel (icône seule)
-    function hotel(lat, lon) {
+    // Gestionnaires d'événements pour la boîte modale
+    const modal = document.getElementById('hotelModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    modalClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Fonction hôtel modifiée pour accepter une image
+    function hotel(lat, lon, imageName) {
 
         points.push([lat, lon]);
 
@@ -108,6 +170,14 @@
         }).addTo(map);
 
         hotelMarker.setZIndexOffset(-100);
+
+        if (imageName) {
+            hotelMarker.on('click', function(e) {
+                L.DomEvent.stopPropagation(e); // Évite les conflits de clic avec la carte
+                modalImg.src = 'hotels/' + imageName;
+                modal.style.display = 'block';
+            });
+        }
     }
 
     // ==========================================
@@ -130,11 +200,11 @@
     // HÔTELS
     // ==========================================
 
-    // Mild Spring Boutique Hotel
-    hotel(29.708083, 118.292702);
+    // Mild Spring Boutique Hotel -> xidi.jpg
+    hotel(29.708083, 118.292702, 'xidi.jpg');
 
-    // Hongcun Nanhu Guanyuan Designer Lake View Resort Hotel
-    hotel(30.003527, 117.986552);
+    // Hongcun Nanhu Guanyuan Designer Lake View Resort Hotel -> hongcun.jpg
+    hotel(30.003527, 117.986552, 'hongcun.jpg');
 
     // ==========================================
     // CADRAGE INITIAL & PRE-CALCUL DES LIMITES

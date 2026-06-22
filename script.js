@@ -1122,11 +1122,37 @@ Le projet a permis de dresser la frise "officielle" sur laquelle se basent aujou
 
 
 
+
+
+
+
+
 // paramètres URL
 const params = new URLSearchParams(window.location.search);
 const set = params.get('set');
 
-// MUSIQUE DE FOND (VERSION CORRIGÉE AVEC PLUSIEURS ZONES)
+// vidéos ajoutées en fin de certains diaporamas
+
+const videos = {
+    transports: {
+        src: "videos/maglev.mp4",
+        title: "Le Maglev de Shanghai"
+    },
+    shanghai: {
+        src: "videos/shanghai.mp4",
+        title: "Vidéo de Shanghai"
+    },
+    monthuangshan: {
+        src: "videos/monthuangshan.mp4",
+        title: "Vidéo du mont Huangshan"
+    },
+    scenesrue: {
+        src: "videos/scenesderue.mp4",
+        title: "A Pingyao"
+    }
+};
+
+// MUSIQUE DE FOND
 const music = document.getElementById('bgmusic');
 let started = false;
 
@@ -1134,15 +1160,14 @@ if (music) {
   if (set === "xiancentre") {
     music.src = "musique/xian.mp3";
   } else if (set === "armeeenterree") {
-    music.src = "musique/armee.mp3"; // <-- Votre musique pour l'armée enterrée ici
+    music.src = "musique/armee.mp3";
   } else {
-    music.remove(); // on enlève proprement le player pour les zones sans musique
+    music.remove();
   }
 }
 
-// Fonction centrale pour tenter de jouer la musique
 function tryPlay() {
-  if (started || !music || !music.src) return; // Sécurité si aucune musique n'est chargée
+  if (started || !music || !music.src) return;
   started = true;
 
   music.volume = 0.4;
@@ -1158,22 +1183,35 @@ function tryPlay() {
   }
 }
 
-// --- Écouteurs pour la première interaction physique globale ---
 document.addEventListener('pointerdown', tryPlay, { once: true });
 document.addEventListener('keydown', tryPlay, { once: true });
 
-// photos
+// photos + vidéos
 const numbers = sets[set] || [];
+
+const slides = numbers.map(num => ({
+    type: "image",
+    num: num
+}));
+
+if (videos[set]) {
+    slides.push({
+        type: "video",
+        src: videos[set].src,
+        title: videos[set].title
+    });
+}
+
 let index = 0;
 let showingA = true;
 let activeImg = null;
 
-// dernière
+// drag
 let isDragging = false;
 let mouseStartX = 0;
 let mouseStartY = 0;
 
-// Variables pour le zoom
+// zoom
 let currentScale = 1;
 let translateX = 0;
 let translateY = 0;
@@ -1181,6 +1219,8 @@ let translateY = 0;
 // éléments du DOM
 let imgA = document.getElementById('img1');
 let imgB = document.getElementById('img2');
+let videoSlide = document.getElementById('videoSlide');
+
 const caption = document.getElementById('caption');
 const noteBtn = document.getElementById('noteBtn');
 const noteBox = document.getElementById('noteBox');
@@ -1191,7 +1231,7 @@ function path(num){
     return set + '/' + num + '.jpg';
 }
 
-// préchargement
+// préchargement images uniquement
 numbers.forEach(num => {
     const img = new Image();
     img.src = path(num);
@@ -1199,34 +1239,63 @@ numbers.forEach(num => {
 
 // affichage
 function show(){
-    if(numbers.length === 0) return;
+    if(slides.length === 0) return;
 
-    let num = numbers[index];
-    let nextImg = showingA ? imgB : imgA;
-    let currentImg = showingA ? imgA : imgB;
+    let slide = slides[index];
 
-    // 1. Réinitialisation complète du zoom AVANT de charger la nouvelle image
+    // Réinitialisation zoom
     currentScale = 1;
     translateX = 0;
     translateY = 0;
-    nextImg.classList.remove('zoom');
-    nextImg.style.transform = `translate(0px, 0px) scale(1)`;
 
-    // 2. Attente du chargement complet de l'image en mémoire
+    imgA.classList.remove('zoom');
+    imgB.classList.remove('zoom');
+    imgA.style.transform = `translate(0px, 0px) scale(1)`;
+    imgB.style.transform = `translate(0px, 0px) scale(1)`;
+
+    // arrêt vidéo si on quitte une vidéo
+    if (videoSlide) {
+        videoSlide.pause();
+        videoSlide.removeAttribute('src');
+        videoSlide.load();
+        videoSlide.classList.remove('visible');
+    }
+
+    // Cas vidéo
+    if (slide.type === "video") {
+        imgA.classList.remove('visible');
+        imgB.classList.remove('visible');
+
+        videoSlide.src = slide.src;
+        videoSlide.classList.add('visible');
+
+        activeImg = null;
+
+        caption.innerText = slide.title || '';
+        caption.style.display = slide.title ? 'block' : 'none';
+
+        noteBtn.style.opacity = '0';
+        noteBox.style.display = 'none';
+
+        return;
+    }
+
+    // Cas image
+    let num = slide.num;
+    let nextImg = showingA ? imgB : imgA;
+    let currentImg = showingA ? imgA : imgB;
+
     nextImg.onload = function() {
         nextImg.classList.add('visible');
         currentImg.classList.remove('visible');
 
-        // Effet zoom CSS après affichage
         setTimeout(() => {
             nextImg.classList.add('zoom');
         }, 50);
     };
 
-    // On lance le chargement de la source
     nextImg.src = path(num);
 
-    // titre
     let texteTitre = titles[set]?.[num] || '';
     if (texteTitre.trim() === '') {
         caption.style.display = 'none';
@@ -1235,7 +1304,6 @@ function show(){
         caption.style.display = 'block';
     }
 
-    // notes
     const note = notes[set]?.[num];
     if(note){
         noteBtn.style.opacity = '1';
@@ -1251,16 +1319,16 @@ function show(){
 
 // suivante / précédente
 function next(){
-    tryPlay(); // Déclenche la musique au premier changement via bouton/swipe/clavier
+    tryPlay();
     index++;
-    if(index >= numbers.length) index = 0;
+    if(index >= slides.length) index = 0;
     show();
 }
 
 function prev(){
-    tryPlay(); // Déclenche la musique au premier changement via bouton/swipe/clavier
+    tryPlay();
     index--;
-    if(index < 0) index = numbers.length - 1;
+    if(index < 0) index = slides.length - 1;
     show();
 }
 
@@ -1286,7 +1354,7 @@ noteBtn.addEventListener('click', () => {
     noteBox.style.display = (noteBox.style.display === 'block') ? 'none' : 'block';
 });
 
-// Zoom avec CTRL + Molette
+// Zoom avec CTRL + Molette, images uniquement
 viewer.addEventListener('wheel', function(e) {
     if (e.ctrlKey || e.metaKey) {
         e.preventDefault(); 
@@ -1303,8 +1371,7 @@ viewer.addEventListener('wheel', function(e) {
     }
 }, { passive: false });
 
-// --- Gestion du Drag (Déplacement) et Double-clic ---
-
+// Drag images uniquement
 viewer.addEventListener('mousedown', function(e) {
     if (currentScale > 1 && activeImg) {
         isDragging = true;
@@ -1338,7 +1405,7 @@ document.addEventListener('mouseup', function() {
     }
 });
 
-// Retour au zoom 100% au double-clic
+// Retour zoom 100% au double-clic
 viewer.addEventListener('dblclick', function() {
     currentScale = 1;
     translateX = 0;

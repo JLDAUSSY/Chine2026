@@ -66,6 +66,11 @@ h1 {
     letter-spacing: 2px;
 }
 
+.seo-hidden {
+    position: absolute;
+    left: -9999px;
+}
+
 .separator {
     width: 220px;
     height: 3px;
@@ -205,6 +210,14 @@ header {
     max-height: 100%;
     display: block;
 }
+
+
+#videoSlide {
+    background: black;
+    pointer-events: auto;
+}
+
+
 
 .slide.visible, #img1.visible, #img2.visible { 
     opacity: 1; 

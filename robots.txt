@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jldaussy.github.io/Chine2026/sitemap.xml

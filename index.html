@@ -275,5 +275,27 @@ Carnet de voyage en Chine 2026 avec photos, cartes interactives, diaporamas et v
 
     <script data-goatcounter="https://jldaussygoat.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 
+<audio id="bgMusic" preload="auto" loop>
+    <source src="musique/accueil.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.4;
+
+// Tentative de lecture automatique
+window.addEventListener("load", () => {
+    music.play().catch(() => {});
+});
+
+// Si refusée, premier clic n'importe où
+document.addEventListener("pointerdown", () => {
+    if (music.paused) {
+        music.play().catch(() => {});
+    }
+}, { once: true });
+</script>
+
+    
 </body>
 </html>

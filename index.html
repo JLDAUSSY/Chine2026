@@ -283,17 +283,30 @@ Carnet de voyage en Chine 2026 avec photos, cartes interactives, diaporamas et v
 const music = document.getElementById("bgMusic");
 music.volume = 0.4;
 
-// Tentative de lecture automatique
+function lancerMusique() {
+    if (!music.paused) return;
+
+    music.play()
+        .then(() => {
+            console.log("Musique lancée");
+            document.removeEventListener("pointerdown", lancerMusique, true);
+            document.removeEventListener("click", lancerMusique, true);
+        })
+        .catch(err => {
+            console.log("Lecture refusée ou différée :", err);
+        });
+}
+
+// tentative automatique
 window.addEventListener("load", () => {
-    music.play().catch(() => {});
+    music.play().catch(err => {
+        console.log("Autoplay refusé :", err);
+    });
 });
 
-// Si refusée, premier clic n'importe où
-document.addEventListener("pointerdown", () => {
-    if (music.paused) {
-        music.play().catch(() => {});
-    }
-}, { once: true });
+// premier clic ou toucher, même sur le bouton Aide
+document.addEventListener("pointerdown", lancerMusique, true);
+document.addEventListener("click", lancerMusique, true);
 </script>
 
     

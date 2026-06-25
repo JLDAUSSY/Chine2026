@@ -293,18 +293,16 @@ function lancerMusique() {
             document.removeEventListener("click", lancerMusique, true);
         })
         .catch(err => {
-            console.log("Lecture refusée ou différée :", err);
+            console.log("Lecture refusée :", err);
         });
 }
 
-// tentative automatique
 window.addEventListener("load", () => {
     music.play().catch(err => {
         console.log("Autoplay refusé :", err);
     });
 });
 
-// premier clic ou toucher, même sur le bouton Aide
 document.addEventListener("pointerdown", lancerMusique, true);
 document.addEventListener("click", lancerMusique, true);
 </script>

@@ -14,16 +14,7 @@
 
 <link rel="canonical"
       href="https://jldaussy.github.io/Chine2026/voyage.html">
-<link rel="icon" href="favicon.ico">
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W40RTMTJ39"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-W40RTMTJ39');
-</script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
@@ -169,8 +160,8 @@ attribution:'© OpenStreetMap'
 function go(set){
 
 if(set==='pekinmap'){
-window.location.href='pekin.html'
-    return
+window.location.href='pekin.html?v=' + Date.now()
+return
 }
 
 if(set==='huangshanmap'){
@@ -183,7 +174,12 @@ window.location.href='xian.html'
 return
 }
 
-window.location.href='slideshow.html?set='+set
+
+window.location.href =
+    'slideshow.html?set=' + set +
+    '&from=' + encodeURIComponent(location.pathname.split('/').pop());
+
+
 }
 
 function ville(lat, lon, name, set){

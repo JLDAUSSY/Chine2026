@@ -1322,6 +1322,13 @@ function show(){
     }
 
 // compteur photo
+
+//tempo
+    console.log("COMPTEUR:", num, slides.length);
+
+//tempo
+    
+    
 photoCounter.textContent = (num) + " / " + slides.length;
 
 

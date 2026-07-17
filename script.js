@@ -1232,6 +1232,11 @@ const noteBtn = document.getElementById('noteBtn');
 const noteBox = document.getElementById('noteBox');
 const viewer = document.getElementById('viewer');
 
+
+
+const photoCounter = document.getElementById('photoCounter');
+
+
 const infoSound = document.getElementById('infoSound');
 
 // Mémorise les photos pour lesquelles le signal a déjà été joué
@@ -1316,6 +1321,8 @@ function show(){
         caption.style.display = 'block';
     }
 
+// compteur photo
+photoCounter.textContent = (num) + " / " + slides.length;
 
 
 const note = notes[set]?.[num];

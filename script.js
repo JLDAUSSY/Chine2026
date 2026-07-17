@@ -1131,6 +1131,12 @@ Le projet a permis de dresser la frise "officielle" sur laquelle se basent aujou
 const params = new URLSearchParams(window.location.search);
 const set = params.get('set');
 
+
+const from = params.get('from') || 'index.html';
+
+document.getElementById('backLink').href = from;
+
+
 // vidéos ajoutées en fin de certains diaporamas
 
 const videos = {

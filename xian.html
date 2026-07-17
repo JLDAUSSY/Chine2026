@@ -13,16 +13,7 @@
 
 <link rel="canonical"
       href="https://jldaussy.github.io/Chine2026/xian.html">
-    <link rel="icon" href="favicon.ico">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W40RTMTJ39"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W40RTMTJ39');
-</script>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <link rel="stylesheet" href="style.css">
 
@@ -134,10 +125,13 @@
             })
         })
         .addTo(map)
-        .on('click', (e) => {
-            L.DomEvent.stopPropagation(e);
-            window.location = 'slideshow.html?set=' + set;
-        });
+       
+
+.on('click', (e) => {
+    L.DomEvent.stopPropagation(e);
+    window.location = 'slideshow.html?set=' + set + '&from=' + encodeURIComponent(location.pathname.split('/').pop());
+});
+
     }
 
     // Gestionnaires d'événements pour la boîte modale

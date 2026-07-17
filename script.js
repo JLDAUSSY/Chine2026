@@ -1226,6 +1226,12 @@ const noteBtn = document.getElementById('noteBtn');
 const noteBox = document.getElementById('noteBox');
 const viewer = document.getElementById('viewer');
 
+const infoSound = document.getElementById('infoSound');
+
+// Mémorise les photos pour lesquelles le signal a déjà été joué
+const notesDejaSignalees = new Set();
+
+
 // chemin image
 function path(num){
     return set + '/' + num + '.jpg';
@@ -1304,18 +1310,46 @@ function show(){
         caption.style.display = 'block';
     }
 
-    const note = notes[set]?.[num];
-    if(note){
-        noteBtn.style.opacity = '1';
-        noteBox.innerHTML = note;
-    } else {
-        noteBtn.style.opacity = '0';
-        noteBox.style.display = 'none';
+
+
+const note = notes[set]?.[num];
+
+if (note) {
+    noteBtn.style.opacity = '1';
+    noteBox.innerHTML = note;
+
+    // Animation du bouton i
+    noteBtn.classList.remove('noteFlash');
+    void noteBtn.offsetWidth;
+    noteBtn.classList.add('noteFlash');
+
+    // Son joué une seule fois par photo
+    const clePhoto = `${set}-${num}`;
+
+    if (!notesDejaSignalees.has(clePhoto)) {
+        notesDejaSignalees.add(clePhoto);
+
+        if (infoSound) {
+            infoSound.currentTime = 0;
+            infoSound.volume = 0.25;
+            infoSound.play().catch(() => {});
+        }
     }
 
-    showingA = !showingA;
-    activeImg = nextImg;
+} else {
+    noteBtn.style.opacity = '0';
+    noteBox.style.display = 'none';
+    noteBtn.classList.remove('noteFlash');
 }
+
+showingA = !showingA;
+activeImg = nextImg;
+}
+
+
+
+
+
 
 // suivante / précédente
 function next(){

@@ -1158,6 +1158,8 @@ const videos = {
     }
 };
 
+
+
 // MUSIQUE DE FOND
 const music = document.getElementById('bgmusic');
 let started = false;
@@ -1167,10 +1169,15 @@ if (music) {
     music.src = "musique/xian.mp3";
   } else if (set === "armeeenterree") {
     music.src = "musique/armee.mp3";
+  } else if (set === "nourriture") {
+    music.src = "musique/nourriture.mp3";
   } else {
     music.remove();
   }
 }
+
+
+
 
 function tryPlay() {
   if (started || !music || !music.src) return;

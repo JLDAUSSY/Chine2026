@@ -1322,10 +1322,7 @@ function show(){
     }
 
 // compteur photo
-
-    
-    
-photoCounter.textContent = (num) + " / " + slides.length;
+photoCounter.textContent = (index + 1) + " / " + slides.length;
 
 
 const note = notes[set]?.[num];

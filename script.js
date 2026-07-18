@@ -1170,7 +1170,9 @@ if (music) {
   } else if (set === "armeeenterree") {
     music.src = "musique/armee.mp3";
   } else if (set === "nourriture") {
-    music.src = "musique/nourriture.mp3";
+    music.src = "musique/daoxiang.mp3";
+  } else if (set === "transports") {
+    music.src = "musique/tianlu.mp3";
   } else {
     music.remove();
   }

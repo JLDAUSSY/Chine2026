@@ -1240,6 +1240,21 @@ let imgA = document.getElementById('img1');
 let imgB = document.getElementById('img2');
 let videoSlide = document.getElementById('videoSlide');
 
+
+// Gestion de la musique pendant les vidéos
+if (videoSlide && music) {
+
+    videoSlide.addEventListener('play', () => {
+        music.pause();
+    });
+
+    videoSlide.addEventListener('ended', () => {
+        if (started) music.play().catch(() => {});
+    });
+
+}
+
+
 const caption = document.getElementById('caption');
 const noteBtn = document.getElementById('noteBtn');
 const noteBox = document.getElementById('noteBox');
@@ -1283,21 +1298,31 @@ function show(){
     imgA.style.transform = `translate(0px, 0px) scale(1)`;
     imgB.style.transform = `translate(0px, 0px) scale(1)`;
 
-    // arrêt vidéo si on quitte une vidéo
-    if (videoSlide) {
-        videoSlide.pause();
-        videoSlide.removeAttribute('src');
-        videoSlide.load();
-        videoSlide.classList.remove('visible');
+
+// arrêt vidéo si on quitte une vidéo
+if (videoSlide) {
+    const etaitEnLecture = !videoSlide.paused;
+
+    videoSlide.pause();
+    videoSlide.removeAttribute('src');
+    videoSlide.load();
+    videoSlide.classList.remove('visible');
+
+    // Si on quitte une vidéo, on remet la musique
+    if (etaitEnLecture && music && started) {
+        music.play().catch(() => {});
     }
+}
 
     // Cas vidéo
     if (slide.type === "video") {
         imgA.classList.remove('visible');
         imgB.classList.remove('visible');
 
-        videoSlide.src = slide.src;
-        videoSlide.classList.add('visible');
+videoSlide.src = slide.src;
+videoSlide.currentTime = 0;
+videoSlide.classList.add('visible');
+
 
         activeImg = null;
 

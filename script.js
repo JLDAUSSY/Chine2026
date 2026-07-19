@@ -1173,6 +1173,8 @@ if (music) {
     music.src = "musique/daoxiang.mp3";
   } else if (set === "transports") {
     music.src = "musique/tianlu.mp3";
+  } else if (set === "police") {
+    music.src = "musique/police.mp3";
   } else {
     music.remove();
   }

@@ -487,7 +487,7 @@ police:{
 3:"à Fengyujou (Xi'an), notre rando (gpx téléchargé) est dans une zone interdite aux étrangers - demi-tour !",
 4:"reconnaissance faciale pour la navette à Maijishan",
 5:"reconnaissance faciale encore ! mais cette-fois, échec ! mais je peux quand-même entrer",
-6:"dans le métro de Shanghai, policemen, women and dogs",
+6:"dans le métro de Shanghai, policemen, policewomen and police...dogs!!!",
 7:"robots de police autonomes à Pingyao",
 8:"robot de police à la gare de Hangzhou"
 }

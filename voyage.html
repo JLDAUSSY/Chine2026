@@ -1,1040 +1,421 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Édith et Jean-Luc Daussy">
-    <meta name="robots" content="index,follow">
-
-    <title>La Chine pratique – VPN, trains, métro, Didi, Alipay et conseils de voyage en Chine</title>
-
-    <meta name="description"
-          content="Conseils pratiques après trois semaines de voyage en Chine : Internet, VPN, Free Mobile, carte SIM chinoise, Amap, Alipay, WeChat Pay, Didi, trains à grande vitesse, métro, hôtels, IA, prises électriques et astuces de terrain.">
-
-    <link rel="canonical" href="https://jldaussy.github.io/Chine2026/chinepratique.html">
-
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Voyage en Chine 2026">
-    <meta property="og:title" content="La Chine pratique – Conseils et retour d'expérience">
-    <meta property="og:description" content="Internet, VPN, paiements, trains, métro, Didi, applications, IA et conseils pratiques après trois semaines en Chine.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://jldaussy.github.io/Chine2026/chinepratique.html">
-    <meta property="og:image" content="https://jldaussy.github.io/Chine2026/photos/chinepratique/departs-pekin-nord.jpg">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="La Chine pratique – Conseils et retour d'expérience">
-    <meta name="twitter:description" content="Conseils pratiques pour voyager en Chine : VPN, paiements, trains, métro, applications, Didi et astuces de terrain.">
-    <meta name="twitter:image" content="https://jldaussy.github.io/Chine2026/photos/chinepratique/departs-pekin-nord.jpg">
-
-    <link rel="icon" href="favicon.ico" sizes="any">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W40RTMTJ39"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-W40RTMTJ39');
-    </script>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "La Chine pratique",
-      "alternativeHeadline": "Conseils et retour d'expérience après trois semaines en Chine",
-      "description": "Conseils pratiques après trois semaines de voyage en Chine : Internet, VPN, paiements, trains, métro, Didi, applications, intelligence artificielle et astuces de terrain.",
-      "url": "https://jldaussy.github.io/Chine2026/chinepratique.html",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://jldaussy.github.io/Chine2026/chinepratique.html"
-      },
-      "image": "https://jldaussy.github.io/Chine2026/photos/chinepratique/departs-pekin-nord.jpg",
-      "author": [
-        {
-          "@type": "Person",
-          "name": "Édith Daussy"
-        },
-        {
-          "@type": "Person",
-          "name": "Jean-Luc Daussy"
-        }
-      ],
-      "publisher": {
-        "@type": "Person",
-        "name": "Jean-Luc Daussy"
-      },
-      "inLanguage": "fr-FR",
-      "keywords": [
-        "voyage en Chine",
-        "Chine pratique",
-        "VPN Chine",
-        "Amap",
-        "Alipay",
-        "WeChat Pay",
-        "Didi",
-        "train Chine",
-        "métro Chine",
-        "carte SIM Chine",
-        "Trip.com",
-        "12306"
-      ]
-    }
-    </script>
-
-    <style>
-        body.chine-pratique-body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4efe8;
-            color: #1c1c1c;
-        }
-
-        .pratique-hero {
-            min-height: 100vh;
-            padding: 34px 22px 55px;
-            box-sizing: border-box;
-            background:
-                linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.88)),
-                url('fond-accueil.png') center / cover fixed no-repeat;
-        }
-
-        .pratique-shell {
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 28px;
-        }
-
-        .home-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 18px;
-            border-radius: 999px;
-            background: #7a0f16;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-        }
-
-        .home-link:hover {
-            background: #a61b29;
-        }
-
-        .pratique-title-card {
-            text-align: center;
-            background: rgba(255,255,255,0.88);
-            border-radius: 30px;
-            padding: 36px 34px 32px;
-            box-shadow: 0 14px 38px rgba(0,0,0,0.18);
-            border: 1px solid rgba(122,15,22,0.12);
-            margin-bottom: 28px;
-        }
-
-        .pratique-title-card h1 {
-            margin: 0;
-            color: #7a0f16;
-            font-family: Georgia, serif;
-            font-size: clamp(42px, 7vw, 76px);
-            letter-spacing: 1px;
-            text-shadow: none;
-        }
-
-        .pratique-title-card .subtitle {
-            margin: 14px 0 0;
-            font-size: clamp(18px, 2.6vw, 26px);
-            color: #4b2b2e;
-            font-style: italic;
-        }
-
-        .pratique-intro {
-            max-width: 850px;
-            margin: 22px auto 0;
-            font-size: 19px;
-            line-height: 1.7;
-            color: #222;
-        }
-
-        .accordions {
-            display: grid;
-            gap: 18px;
-            margin-top: 28px;
-        }
-
-        details.pratique-item {
-            background: rgba(255,255,255,0.92);
-            border-radius: 22px;
-            box-shadow: 0 10px 26px rgba(0,0,0,0.12);
-            border: 1px solid rgba(122,15,22,0.10);
-            overflow: hidden;
-        }
-
-        details.pratique-item[open] {
-            box-shadow: 0 16px 36px rgba(0,0,0,0.18);
-        }
-
-        .pratique-item summary {
-            list-style: none;
-            cursor: pointer;
-            padding: 22px 26px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            background: linear-gradient(145deg, #a61b29, #7a0f16);
-            color: white;
-        }
-
-        .pratique-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .summary-text {
-            display: grid;
-            gap: 6px;
-        }
-
-        .summary-title {
-            font-size: clamp(22px, 3vw, 30px);
-            font-weight: 800;
-        }
-
-        .summary-subtitle {
-            font-size: 16px;
-            line-height: 1.45;
-            color: rgba(255,255,255,0.88);
-            font-style: italic;
-        }
-
-        .summary-arrow {
-            flex: 0 0 auto;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.18);
-            font-size: 24px;
-            transition: transform 0.25s ease;
-        }
-
-        details[open] .summary-arrow {
-            transform: rotate(90deg);
-        }
-
-        .pratique-content {
-            padding: 28px 32px 32px;
-            font-size: 18px;
-            line-height: 1.75;
-        }
-
-        .pratique-content h3 {
-            color: #7a0f16;
-            margin: 28px 0 10px;
-            font-size: 24px;
-        }
-
-        .pratique-content p {
-            margin: 0 0 16px;
-        }
-
-        .pratique-content ul {
-            margin: 8px 0 18px 22px;
-            padding: 0;
-        }
-
-        .pratique-content li {
-            margin-bottom: 8px;
-        }
-
-        .note-box {
-            margin: 22px 0;
-            padding: 18px 20px;
-            background: #fff7e6;
-            border-left: 6px solid #c99700;
-            border-radius: 14px;
-        }
-
-        .pratique-figure {
-            margin: 24px auto;
-            max-width: 760px;
-            text-align: center;
-        }
-
-        .pratique-figure img {
-            width: 100%;
-            max-height: 520px;
-            object-fit: contain;
-            border-radius: 18px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.22);
-            background: #ddd;
-            cursor: zoom-in;
-        }
-
-        .pratique-figure figcaption {
-            margin-top: 10px;
-            font-size: 15px;
-            color: #555;
-            font-style: italic;
-        }
-
-        .figure-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
-            align-items: start;
-            margin: 24px auto;
-            max-width: 980px;
-        }
-
-        .figure-grid .pratique-figure {
-            margin: 0;
-            max-width: none;
-        }
-
-        .app-link {
-            color: #7a0f16;
-            text-decoration: none;
-            border-bottom: 1px dotted rgba(122, 15, 22, 0.6);
-        }
-
-        .app-link:hover {
-            color: #a61b29;
-            border-bottom-style: solid;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-            margin: 20px 0;
-            border-radius: 16px;
-            box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-        }
-
-        table.pratique-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            min-width: 620px;
-        }
-
-        .pratique-table th,
-        .pratique-table td {
-            padding: 12px 14px;
-            border-bottom: 1px solid #eadede;
-            text-align: left;
-        }
-
-        .pratique-table th {
-            background: #7a0f16;
-            color: white;
-        }
-
-        .pratique-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .page-bottom {
-            text-align: center;
-            margin: 34px 0 8px;
-        }
-
-        .image-lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.88);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .image-lightbox.show {
-            display: flex;
-        }
-
-        .image-lightbox img {
-            max-width: 96vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 16px 45px rgba(0,0,0,0.55);
-            transform-origin: center center;
-            transition: transform 0.08s ease-out;
-            cursor: zoom-in;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .image-lightbox img.zoomed {
-            cursor: grab;
-        }
-
-        .image-lightbox img.dragging {
-            cursor: grabbing;
-            transition: none;
-        }
-
-        .lightbox-close {
-            position: fixed;
-            top: 18px;
-            right: 24px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255,255,255,0.92);
-            color: #111;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 700px) {
-            .pratique-hero {
-                padding: 18px 12px 36px;
-                background-attachment: scroll;
-            }
-
-            .topbar {
-                justify-content: center;
-            }
-
-            .pratique-title-card {
-                padding: 26px 18px 24px;
-                border-radius: 22px;
-            }
-
-            .pratique-intro {
-                font-size: 16px;
-            }
-
-            .pratique-item summary {
-                padding: 18px;
-                align-items: flex-start;
-            }
-
-            .summary-subtitle {
-                font-size: 14px;
-            }
-
-            .summary-arrow {
-                width: 30px;
-                height: 30px;
-                font-size: 20px;
-                margin-top: 3px;
-            }
-
-            .pratique-content {
-                padding: 22px 18px 26px;
-                font-size: 16px;
-            }
-
-            .pratique-content h3 {
-                font-size: 21px;
-            }
-
-            .figure-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Itinéraire Chine 2026 : Pékin, Pingyao, Xi'an, Tianshui, Nankin, Huangshan, Hangzhou et Shanghai</title>
+
+<meta name="description"
+      content="Carte interactive de notre itinéraire de trois semaines en Chine en avril 2026 : Pékin, Pingyao, Xi'an, Tianshui, Nankin, Huangshan, Hangzhou, Shanghai, avec hôtels, trajets et diaporamas.">
+
+<link rel="canonical"
+      href="https://jldaussy.github.io/Chine2026/voyage.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script src="provinces.js"></script>
+
+<style>
+
+#map {
+  height: calc(100vh - 120px);
+  width: 100%;
+  margin-top: 0;
+}
+
+.province-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.province-name {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+
+  font-size: 19.5px;
+  font-weight: 700;
+  color: #111;
+  text-shadow: 0 0 4px rgba(255,255,255,0.85);
+
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.route-line {
+  color: #1f2a44;
+  weight: 3;
+  opacity: 0.85;
+}
+
+.custom-hotel-icon {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+/* Style de la boîte modale pour l'affichage de l'image */
+.hotel-modal {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  z-index: 9999; /* Toujours au-dessus de la carte Leaflet */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Conteneur de l'image pour le centrage */
+.hotel-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 85%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border: 3px solid #fff;
+  border-radius: 4px;
+}
+
+/* Bouton de fermeture (la croix  en haut à droite) */
+.hotel-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.hotel-modal-close:hover {
+  color: #D32F2F;
+}
+
+</style>
+
 </head>
 
+<body>
 
-<body class="chine-pratique-body">
-    <main class="pratique-hero">
-        <div class="pratique-shell">
-            <div class="topbar">
-                <a class="home-link" href="index.html">← Accueil</a>
-            </div>
-
-            <header class="pratique-title-card">
-                <h1>La Chine pratique</h1>
-                <p class="subtitle">Conseils et retour d'expérience après trois semaines en Chine</p>
-                <div class="pratique-intro">
-                    <p>Pendant notre voyage, nous avons noté les détails qui rendent un séjour en Chine plus simple, mais aussi les petites surprises auxquelles on ne pense pas toujours avant le départ. Cette page rassemble ces informations pratiques, avec des exemples et des photos prises sur place.</p>
-                </div>
-            </header>
-
-            <section class="accordions" aria-label="Conseils pratiques pour voyager en Chine">
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🏨 Réserver les hôtels</span><span class="summary-subtitle">Booking.com, hôtels acceptant les étrangers et choix des établissements</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>La plateforme que nous avons utilisée le plus souvent est <strong>Booking.com</strong>, qui propose un très grand choix d'établissements et permet généralement une annulation gratuite jusqu'à quelques jours avant l'arrivée.</p>
-                        <p>En Chine, les hôtels doivent être autorisés à accueillir des étrangers. Ce n'est pratiquement plus un problème dans les grandes villes ni sur Booking, mais il peut encore arriver que certains petits établissements n'acceptent que des clients chinois. Il est donc préférable de réserver via une plateforme internationale permettant de vérifier que les voyageurs étrangers sont bien acceptés.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🌐 Internet en Chine</span><span class="summary-subtitle">Great Firewall, VPN et itinérance Free Mobile</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, le gouvernement a mis en place un système de filtrage d'Internet appelé le <strong>Great Firewall</strong> (en chinois : 防火长城, <em>Fánghuǒ Chángchéng</em>, littéralement « Grande Muraille pare-feu »). Depuis de nombreuses années, l'accès aux applications et services étrangers est progressivement restreint.</p>
-                        <p>L'utilisation d'un <strong>VPN</strong> permet généralement de contourner ces blocages. Lors de notre séjour en 2026, nous avons utilisé <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.astrill.astrillvpn" target="_blank" rel="noopener">Astrill VPN</a></strong>, qui s'est révélé très fiable.</p>
-                        <p>Notre abonnement <strong>Free Mobile</strong> nous a également souvent permis d'accéder à des services normalement bloqués. Cela s'explique probablement par le fait que les données étaient acheminées en itinérance, via des serveurs situés hors de Chine. Le trafic Internet ne transitait donc pas entièrement comme celui d'une carte SIM chinoise classique. Ce fonctionnement n'était toutefois pas garanti à 100 % selon les réseaux utilisés.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">📱 Téléphonie</span><span class="summary-subtitle">Abonnement français, carte SIM chinoise et SMS de validation</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Pour téléphoner, consulter Internet ou utiliser la plupart des applications, notre abonnement <strong>Free Mobile</strong> s'est révélé largement suffisant.</p>
-                        <p>En revanche, certaines applications chinoises nécessitent impérativement un <strong>numéro de téléphone chinois</strong>, notamment pour recevoir un SMS de validation lors de l'inscription.</p>
-                        <p>Nous avons acheté une carte SIM <strong>China Mobile</strong>, facile à obtenir dans une grande agence. La couverture s'est révélée excellente dans toutes les régions traversées. Attention toutefois : les petites boutiques ne sont pas toujours habilitées à délivrer une carte SIM à un étranger.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">📲 Les applications indispensables</span><span class="summary-subtitle">Amap, Alipay, WeChat, Didi, Trip.com, 12306, traduction, VPN et IA</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Avant de partir, nous vous conseillons d'installer les principales applications utilisées en Chine. Elles facilitent considérablement les déplacements, les paiements, les réservations et la communication.</p>
-
-                        <h3>🗺️ <a class="app-link" href="https://play.google.com/store/apps/details?id=com.autonavi.minimap" target="_blank" rel="noopener">Amap</a> / Gaode Maps</h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.autonavi.minimap" target="_blank" rel="noopener">Amap</a></strong>, également appelée <strong>Gaode Maps</strong>, est l'application de cartographie de référence en Chine. Elle permet de préparer un itinéraire à pied, en voiture ou en transports en commun, de connaître les correspondances du métro, de retrouver la bonne sortie d'une station et de rechercher un hôtel, un restaurant ou une gare.</p>
-                        <p><strong>Google Maps</strong> fonctionne très mal en Chine. Les cartes chinoises utilisent un système de coordonnées différent de celui employé par Google, ce qui explique les décalages parfois importants entre la position GPS réelle et la position affichée. Amap est donc devenue notre application de navigation quotidienne.</p>
-                        <p>L'inscription nécessite généralement un numéro de téléphone chinois. L'application est principalement en chinois, mais il est possible de rechercher de nombreux sites touristiques en anglais.</p>
-
-                        <div class="figure-grid">
-                            <figure class="pratique-figure">
-                                <img src="photos/chinepratique/trajetamappied.jpg" alt="Itinéraire à pied dans Amap">
-                                <figcaption>Amap calcule précisément les itinéraires à pied, avec le temps de parcours et les indications de direction.</figcaption>
-                            </figure>
-                            <figure class="pratique-figure">
-                                <img src="photos/chinepratique/trajetamapmetro.jpg" alt="Itinéraire en métro dans Amap">
-                                <figcaption>Pour les trajets en métro, Amap indique les correspondances, la durée du trajet et le numéro de la sortie à emprunter.</figcaption>
-                            </figure>
-                        </div>
-
-                        <h3>💳 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></strong> est sans doute l'application la plus indispensable du voyage. Elle sert à payer avec un QR Code, à utiliser <a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a>, à régler de nombreuses petites dépenses et à accéder à certains services. Nous l'avons utilisée plusieurs dizaines de fois par jour.</p>
-
-                        <h3>💬 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.tencent.mm" target="_blank" rel="noopener">WeChat</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.tencent.mm" target="_blank" rel="noopener">WeChat</a></strong> est l'application de messagerie incontournable en Chine. Elle permet aussi d'utiliser <strong>WeChat Pay</strong> et d'accéder à des mini-programmes nécessaires à certaines réservations, par exemple pour Tian'anmen ou certaines attractions touristiques.</p>
-
-                        <h3>🚕 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a></strong> est l'équivalent chinois d'Uber. Les prix sont généralement très faibles. L'application peut être utilisée directement depuis <a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a>, ce qui évite parfois d'installer Didi séparément.</p>
-
-                        <h3>🚄 <a class="app-link" href="https://play.google.com/store/apps/details?id=ctrip.english" target="_blank" rel="noopener">Trip.com</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=ctrip.english" target="_blank" rel="noopener">Trip.com</a></strong> nous a servi pour réserver des trains (plus facilement qu'avec 12306) et parfois certaines visites. Son interface en français ou en anglais simplifie beaucoup les démarches, notamment pour les voyageurs qui ne lisent pas le chinois.</p>
-
-                        <h3>🚅 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.MobileTicket" target="_blank" rel="noopener">12306</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.MobileTicket" target="_blank" rel="noopener">12306</a></strong> est l'application officielle des chemins de fer chinois. Elle permet de réserver directement les billets de train, mais son utilisation avec un passeport étranger peut être plus complexe que <a class="app-link" href="https://play.google.com/store/apps/details?id=ctrip.english" target="_blank" rel="noopener">Trip.com</a>.</p>
-
-                        <h3>🌍 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.translate" target="_blank" rel="noopener">Google Translate</a></h3>
-                        <p>Même si nous apprenons le chinois depuis plusieurs années, <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.translate" target="_blank" rel="noopener">Google Translate</a></strong> nous a souvent aidés à traduire des menus, à comprendre certains panneaux ou à communiquer ponctuellement. La traduction instantanée par appareil photo est particulièrement pratique.</p>
-
-                        <h3>🔐 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.astrill.astrillvpn" target="_blank" rel="noopener">Astrill VPN</a></h3>
-                        <p><strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.astrill.astrillvpn" target="_blank" rel="noopener">Astrill VPN</a></strong> a été notre VPN durant tout le séjour. Il nous a permis d'accéder aux principaux services occidentaux lorsque cela était nécessaire.</p>
-
-                        <h3>🤖 <a class="app-link" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener">ChatGPT</a>, <a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.bard" target="_blank" rel="noopener">Gemini</a> et <a class="app-link" href="https://play.google.com/store/apps/details?id=com.microsoft.copilot" target="_blank" rel="noopener">Copilot</a></h3>
-                        <p>Les applications d'intelligence artificielle ne sont pas seulement des outils de traduction. Elles peuvent expliquer un monument, commenter une visite, traduire une inscription, comprendre le fonctionnement d'un appareil ou donner un éclairage historique en quelques secondes.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">💳 Paiement</span><span class="summary-subtitle">Alipay, WeChat Pay, QR Codes et cartes bancaires</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, le <strong>QR Code</strong> est de très loin le principal moyen de paiement. Les deux applications indispensables sont <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></strong> et <strong>WeChat Pay</strong>.</p>
-                        <p>Une carte bancaire internationale, Visa ou Mastercard, peut être enregistrée dans chacune d'elles. Le fonctionnement est simple : soit vous scannez le QR Code du commerçant et saisissez le montant, soit le commerçant scanne votre propre QR Code.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/qrmetro.jpg" alt="QR code pour l'achat d'un ticket de métro">
-                            <figcaption>QR Code pour l'achat d'un ticket de métro.</figcaption>
-                        </figure>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/oranges.jpg" alt="QR code pour l'achat d'oranges auprès d'un producteur">
-                            <figcaption>QR Code pour l'achat d'oranges auprès d'un producteur qui vend en ville.</figcaption>
-                        </figure>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/eau.jpg" alt="QR code pour acheter des bouteilles d'eau sans vendeur sur place">
-                            <figcaption>QR Code pour acheter des bouteilles d'eau, sans vendeur sur place.</figcaption>
-                        </figure>
-
-                        <p>Ce système est utilisé absolument partout, aussi bien dans les grands magasins que chez les vendeurs de rue, et même pour les offrandes dans certains temples.</p>
-                        <p>À Pékin et Shanghai, la carte Visa est également acceptée dans beaucoup de commerces. Elle permet même de régler directement les trajets de métro : il suffit de présenter la carte bancaire à l'entrée puis à la sortie.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">💶 Retirer des espèces</span><span class="summary-subtitle">Une précaution utile malgré les paiements numériques</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Dans les grandes villes, il est très facile de retirer des espèces dans un distributeur automatique. Pendant les dix-huit premiers jours de notre voyage, ces espèces ne nous ont pourtant servi à rien : nous payions tout avec <strong>WeChat Pay</strong> ou <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></strong>.</p>
-                        <p>C'est à notre arrivée à Shanghai que nos applications de paiement ont décidé de ne plus fonctionner, en raison d'une « suspicion de fraude ». Heureusement, les cartes de paiement étaient acceptées presque partout à Shanghai puis à Pékin, et nos espèces nous ont également été utiles.</p>
-                        <div class="note-box"><strong>Conseil simple :</strong> même si l'on pense ne jamais utiliser d'espèces en Chine, il est prudent d'en conserver un peu sur soi.</div>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🚄 Voyager en train</span><span class="summary-subtitle">Réservation, passeport, gares chinoises et trains à grande vitesse</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <h3>Réserver</h3>
-                        <p>L'application officielle est <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.MobileTicket" target="_blank" rel="noopener">12306</a></strong>. S'y inscrire avec un passeport étranger n'est pas toujours simple. Les billets sont généralement mis en vente <strong>15 jours avant le départ</strong>.</p>
-                        <p>Une excellente alternative est <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=ctrip.english" target="_blank" rel="noopener">Trip.com</a></strong>. On peut y réserver plus longtemps à l'avance. Trip.com reste soumis aux mêmes règles que les particuliers, mais dès que les ventes ouvrent sur 12306, la plateforme effectue automatiquement la réservation pour votre compte.</p>
-
-                        <h3>Le billet</h3>
-                        <p>En réalité, il n'y a pratiquement plus de billet papier. Votre <strong>passeport</strong> devient votre billet de train. Il est présenté à l'entrée de la gare, lors de l'accès au quai et parfois lors d'un contrôle à bord.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/controletrain.jpg" alt="Contrôle du passeport avant l'accès au quai">
-                            <figcaption>Contrôle du passeport avant l'accès au quai.</figcaption>
-                        </figure>
-
-                        <h3>La gare</h3>
-                        <p>Les gares chinoises sont immenses. Certaines possèdent plusieurs halls d'attente et, dans les grandes villes, il existe souvent plusieurs gares principales : gare du Nord, du Sud, de l'Est ou de l'Ouest. Lorsqu'on les cherche dans <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.autonavi.minimap" target="_blank" rel="noopener">Amap</a></strong>, dans le métro ou sur <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a></strong>, il est donc indispensable d'identifier précisément la bonne gare.</p>
-
-                        <div class="table-wrap">
-                            <table class="pratique-table">
-                                <thead><tr><th>Français</th><th>Pinyin</th><th>Chinois</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Nord</td><td><strong>běi</strong></td><td><strong>北</strong></td></tr>
-                                    <tr><td>Sud</td><td><strong>nán</strong></td><td><strong>南</strong></td></tr>
-                                    <tr><td>Est</td><td><strong>dōng</strong></td><td><strong>东</strong></td></tr>
-                                    <tr><td>Ouest</td><td><strong>xī</strong></td><td><strong>西</strong></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <p>Par exemple, <strong>Beijing North Railway Station</strong>, <strong>Beijing Bei</strong> et <strong>北京北</strong> désignent tous la <strong>gare de Pékin-Nord</strong>. De même, <strong>Beijing South</strong> correspond à <strong>北京南</strong>, et <strong>Xi'an North</strong> à <strong>西安北</strong>.</p>
-
-                        <div class="note-box"><strong>Astuce :</strong> avant de partir, notez ou faites une capture d'écran du nom de votre gare en chinois. Cela peut être très utile pour prendre un Didi, demander son chemin ou acheter un ticket de métro.</div>
-
-                        <p>Pour accéder au quai, il faut ensuite repérer la <strong>porte d'embarquement</strong> indiquée sur les panneaux de départ. Ces panneaux sont souvent affichés principalement en chinois. Connaître l'écriture chinoise de sa destination facilite donc grandement le repérage. Le numéro du train, par exemple <strong>G88</strong> ou <strong>D305</strong>, est également indiqué.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/departs-pekin-nord.jpg" alt="Panneau des départs de la gare de Pékin Nord">
-                            <figcaption>Panneau des départs de la gare de Pékin Nord. Les informations sont principalement affichées en chinois.</figcaption>
-                        </figure>
-
-                        <p>L'accès au quai n'ouvre généralement qu'une quinzaine de minutes avant le départ. Une fois les contrôles effectués, l'embarquement est rapide et les trains partent presque toujours à l'heure.</p>
-
-                        <h3>Confort, vitesse et ponctualité</h3>
-                        <p>Les trains que nous avons pris étaient toujours des trains à grande vitesse. En Chine, il faut distinguer le type de service, indiqué par une lettre comme G, D ou C, et le type de rame, par exemple CRH ou CR400.</p>
-
-                        <div class="table-wrap">
-                            <table class="pratique-table">
-                                <thead><tr><th>Type</th><th>Nom chinois</th><th>Vitesse maximale en service</th></tr></thead>
-                                <tbody>
-                                    <tr><td>G</td><td>高铁 (<em>Gāotiě</em>)</td><td>350 km/h</td></tr>
-                                    <tr><td>D</td><td>动车 (<em>Dòngchē</em>)</td><td>250 km/h, parfois 160 km/h</td></tr>
-                                    <tr><td>C</td><td>城际 (<em>Chéngjì</em>)</td><td>200 à 350 km/h selon les lignes interurbaines</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="table-wrap">
-                            <table class="pratique-table">
-                                <thead><tr><th>Famille</th><th>Nom</th><th>Vitesse commerciale</th></tr></thead>
-                                <tbody>
-                                    <tr><td>CRH1 / CRH2 / CRH5</td><td>Hexie (和谐号)</td><td>250 km/h</td></tr>
-                                    <tr><td>CRH2C / CRH3</td><td>Hexie</td><td>350 km/h</td></tr>
-                                    <tr><td>CRH380A/B/C</td><td>Hexie</td><td>350 km/h</td></tr>
-                                    <tr><td>CR200</td><td>Fuxing (复兴号)</td><td>160 km/h</td></tr>
-                                    <tr><td>CR300</td><td>Fuxing</td><td>250 km/h</td></tr>
-                                    <tr><td>CR400AF / BF</td><td>Fuxing</td><td>350 km/h</td></tr>
-                                    <tr><td>CR450AF / BF</td><td>Nouvelle génération</td><td>400 km/h, mise en service en cours</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/fuxing.jpg" alt="Intérieur d'un train Fuxing CR400">
-                            <figcaption>Intérieur d'un train Fuxing CR400.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🚇 Voyager en métro</span><span class="summary-subtitle">Réseaux modernes, automates, tickets et sorties de station</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Dans toutes les grandes villes que nous avons visitées — Pékin, Shanghai, Xi'an, Nankin ou Hangzhou — le réseau de métro est dense, moderne et très efficace.</p>
-                        <p>Pour préparer un trajet, nous utilisions <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.autonavi.minimap" target="_blank" rel="noopener">Amap</a></strong>, qui indique les correspondances, le temps de parcours et souvent le numéro ou la lettre de la sortie à utiliser une fois arrivé.</p>
-                        <p>Pour acheter un ticket, il faut sélectionner la station de destination sur un distributeur automatique, puis payer avec <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></strong>, <strong>WeChat Pay</strong> ou parfois une carte bancaire. Selon les villes, le ticket prend la forme d'une carte ou d'un jeton.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/ticketmetro.jpg" alt="Carte ou ticket de métro en Chine">
-                            <figcaption>Carte ou ticket de métro.</figcaption>
-                        </figure>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/jetonnankin.jpg" alt="Jeton du métro de Nankin">
-                            <figcaption>Jeton du métro de Nankin.</figcaption>
-                        </figure>
-
-                        <p>À l'arrivée, il suffit d'insérer la carte ou le jeton dans le portillon de sortie. Compte tenu du faible coût des trajets, nous n'avons pas pris de carte multi-trajets.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🚕 Didi</span><span class="summary-subtitle">L'alternative chinoise à Uber</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, Uber n'existe pas. Son équivalent est <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a></strong>, dont le fonctionnement est quasiment identique. Les prix sont généralement très faibles.</p>
-                        <p>L'application peut être utilisée directement depuis <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone" target="_blank" rel="noopener">Alipay</a></strong>, sans installer l'application <a class="app-link" href="https://play.google.com/store/apps/details?id=com.sdu.didi.psnger" target="_blank" rel="noopener">Didi</a> elle-même, ce qui simplifie beaucoup les choses. Les chauffeurs ne parlent généralement pas anglais, mais comme l'itinéraire est déjà indiqué dans l'application, cela ne pose pas de difficulté particulière.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/reservationdidi.jpg" alt="Réservation d'un trajet Didi">
-                            <figcaption>Réservation d'un Didi : l'application affiche le temps d'attente, le prix estimé, le véhicule et la progression du chauffeur jusqu'au point de rendez-vous.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🔒 Les contrôles de sécurité</span><span class="summary-subtitle">Métro, gares, sites sensibles et sacs aux rayons X</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, les contrôles sont omniprésents. Chaque fois que l'on prend le métro, tous les bagages, même un simple sac à dos, passent au scanner. Le même contrôle est effectué à l'entrée de toutes les gares.</p>
-                        <p>Ces contrôles sont rapides et font partie du quotidien. Ils ne doivent pas inquiéter les visiteurs.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/controletiananmen.jpg" alt="Contrôle d'accès à la place Tian'anmen">
-                            <figcaption>Contrôle d'accès à la place Tian'anmen.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🛂 Le passeport</span><span class="summary-subtitle">Hôtels, police et billet de train</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Le passeport est le document le plus important du voyage. Chaque hôtel le photographie afin d'effectuer la déclaration obligatoire auprès de la police.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/photocopiepasseport.jpg" alt="Photocopie du passeport à l'hôtel">
-                            <figcaption>Photocopie du passeport à l'hôtel Ruilan de Nankin.</figcaption>
-                        </figure>
-
-                        <p>Il sert également de billet de train. Nous vous conseillons donc de toujours l'avoir sur vous, plutôt que de le laisser à l'hôtel.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🎫 Réservations de visites</span><span class="summary-subtitle">Mini-programmes WeChat, Trip.com et aide extérieure</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>L'accès à la place Tian'anmen, la visite du mausolée de l'empereur Qin Shi Huang et de l'armée enterrée de Xi'an, ainsi que de nombreuses autres attractions, peuvent se réserver à l'aide des <strong>mini-programmes WeChat</strong>.</p>
-                        <p>Pour cela, il peut être utile de se faire aider par une personne chinoise, ou même par une IA capable de traduire les écrans. Certaines attractions peuvent aussi se réserver sur <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=ctrip.english" target="_blank" rel="noopener">Trip.com</a></strong>.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🗣️ Parler et se faire comprendre</span><span class="summary-subtitle">Chinois appris, traduction vocale et menus</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Nous apprenons le chinois depuis de nombreuses années. Malgré cela, la langue restant complexe, nous avons parfois eu recours à <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.translate" target="_blank" rel="noopener">Google Translate</a></strong> pour communiquer.</p>
-                        <p>Les fonctions de traduction vocale ou de traduction instantanée à partir de l'appareil photo sont particulièrement utiles dans les restaurants ou pour lire certains panneaux.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🤖 L'intelligence artificielle</span><span class="summary-subtitle">Un compagnon de voyage inattendu</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Que ce soit <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank" rel="noopener">ChatGPT</a></strong>, <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.bard" target="_blank" rel="noopener">Gemini</a></strong> ou <strong><a class="app-link" href="https://play.google.com/store/apps/details?id=com.microsoft.copilot" target="_blank" rel="noopener">Copilot</a></strong>, l'intelligence artificielle est devenue un véritable compagnon de voyage.</p>
-                        <p>Elle permet d'expliquer ce que l'on observe, d'obtenir des informations historiques sur un monument, de traduire une inscription, de commenter en direct la visite d'un temple ou d'un musée, et même de comprendre le fonctionnement d'un appareil dont les commandes sont uniquement en chinois.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/lavelinge.jpg" alt="Lave-linge avec commandes en chinois">
-                            <figcaption>Comprendre le fonctionnement du lave-linge de l'hôtel grâce à l'IA.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">💰 Quelques références de prix</span><span class="summary-subtitle">Hôtels, train, repas et Didi</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <ul>
-                            <li><strong>Hôtels :</strong> prix moyen sur l'ensemble du séjour : 48 € par nuit, pour des établissements de catégorie 3 à 4 étoiles.</li>
-                            <li><strong>Train :</strong> Shanghai → Pékin en TGV : environ 90 €.</li>
-                            <li><strong>Repas :</strong> voir les cartes présentées dans la rubrique « La nourriture ».</li>
-                            <li><strong>Didi :</strong> Hongcun → Xidi : 46 CNY.</li>
-                        </ul>
-                        <p>Les trajets urbains en Didi coûtent souvent entre 10 et 30 CNY, soit seulement quelques euros.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">💧 Hygiène</span><span class="summary-subtitle">Eau du robinet et bouteilles d'eau</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>Il est généralement déconseillé de boire l'eau du robinet en Chine. On peut acheter des bouteilles d'eau partout, très facilement et à bas prix.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🔌 Recharger ses équipements</span><span class="summary-subtitle">Prises, adaptateur et batterie externe</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, les prises électriques peuvent être de type <strong>A</strong>, <strong>C</strong> ou <strong>I</strong>. Il faut donc prévoir un adaptateur.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/prisesaci.jpg" alt="Prises électriques de type A, C et I">
-                            <figcaption>Prises A, C et I : les fiches françaises de type C fonctionnent généralement, mais un adaptateur universel reste conseillé.</figcaption>
-                        </figure>
-                        <p>Par ailleurs, en Chine plus que partout ailleurs, le téléphone devient votre meilleur ami : pour payer, traduire, trouver un itinéraire ou réserver un trajet. Avoir avec soi une <strong>batterie externe</strong> n'est donc pas un luxe.</p>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">🏮 Les souvenirs de l'époque maoïste</span><span class="summary-subtitle">Objets, portraits et traces du passé</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>À de nombreux endroits, nous avons vu, souvent chez des antiquaires professionnels ou occasionnels, des portraits de Mao, de Zhou Enlai ou d'autres vestiges du passé.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/mao.jpg" alt="Portraits de Mao et Zhou Enlai">
-                            <figcaption>Mao et Zhou Enlai, traces visibles d'une autre époque.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">4️⃣ La Chine superstitieuse</span><span class="summary-subtitle">Pourquoi le chiffre 4 disparaît parfois</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>En Chine, vous trouverez rarement un quatrième étage sur le panneau de certains ascenseurs, et parfois pas de chambre portant le numéro 4.</p>
-                        <p>Le chiffre 4 (四, <em>sì</em>) est considéré comme porte-malheur, car sa prononciation est très proche de celle du mot « mort » (死, <em>sǐ</em>). Pour cette raison, de nombreux immeubles suppriment le 4e étage, les étages 14, 24 ou 34, ou évitent les numéros de chambre contenant un 4.</p>
-
-                        <figure class="pratique-figure">
-                            <img src="photos/chinepratique/ascenseur4.jpg" alt="Panneau d'ascenseur sans quatrième étage">
-                            <figcaption>Panneau de contrôle de l'ascenseur du City Comfort Hotel de Xi'an.</figcaption>
-                        </figure>
-                    </div>
-                </details>
-
-                <details class="pratique-item">
-                    <summary>
-                        <span class="summary-text"><span class="summary-title">👴 Les seniors de 65 ans et plus</span><span class="summary-subtitle">Gratuité fréquente dans les sites touristiques</span></span>
-                        <span class="summary-arrow">›</span>
-                    </summary>
-                    <div class="pratique-content">
-                        <p>L'accès à de nombreux sites touristiques s'est avéré gratuit pour les personnes de plus de 65 ans. Lorsqu'un agent aperçoit la date de naissance sur le passeport, il applique souvent spontanément le tarif préférentiel.</p>
-                        <p>Le terme chinois <strong>老人</strong> (<em>lǎorén</em>) signifie « personne âgée ».</p>
-                    </div>
-                </details>
-            </section>
-
-            <div class="page-bottom">
-                <a class="home-link" href="index.html">← Retour à l'accueil</a>
-            </div>
-        </div>
-    </main>
-
-    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
-        <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
-        <img id="lightboxImg" src="" alt="Image agrandie">
-    </div>
-
-    <script>
-        (function () {
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.getElementById('lightboxClose');
-
-            let zoom = 1;
-            let translateX = 0;
-            let translateY = 0;
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
-            let originX = 0;
-            let originY = 0;
-
-            function applyTransform() {
-                lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoom})`;
-                lightboxImg.classList.toggle('zoomed', zoom > 1);
-            }
-
-            function resetImageView() {
-                zoom = 1;
-                translateX = 0;
-                translateY = 0;
-                isDragging = false;
-                lightboxImg.classList.remove('zoomed', 'dragging');
-                applyTransform();
-            }
-
-            document.querySelectorAll('.pratique-figure img').forEach((img) => {
-                img.addEventListener('click', () => {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt || 'Image agrandie';
-                    resetImageView();
-                    lightbox.classList.add('show');
-                    lightbox.setAttribute('aria-hidden', 'false');
-                });
-            });
-
-            lightboxImg.addEventListener('wheel', (event) => {
-                event.preventDefault();
-
-                const previousZoom = zoom;
-                const delta = event.deltaY < 0 ? 0.15 : -0.15;
-                zoom = Math.min(Math.max(zoom + delta, 1), 5);
-
-                if (zoom === 1) {
-                    translateX = 0;
-                    translateY = 0;
-                } else if (previousZoom !== zoom) {
-                    translateX *= zoom / previousZoom;
-                    translateY *= zoom / previousZoom;
-                }
-
-                applyTransform();
-            }, { passive: false });
-
-            lightboxImg.addEventListener('dblclick', (event) => {
-                event.preventDefault();
-                resetImageView();
-            });
-
-            lightboxImg.addEventListener('pointerdown', (event) => {
-                if (zoom <= 1) return;
-                event.preventDefault();
-                isDragging = true;
-                startX = event.clientX;
-                startY = event.clientY;
-                originX = translateX;
-                originY = translateY;
-                lightboxImg.classList.add('dragging');
-                lightboxImg.setPointerCapture(event.pointerId);
-            });
-
-            lightboxImg.addEventListener('pointermove', (event) => {
-                if (!isDragging) return;
-                translateX = originX + event.clientX - startX;
-                translateY = originY + event.clientY - startY;
-                applyTransform();
-            });
-
-            function stopDragging(event) {
-                if (!isDragging) return;
-                isDragging = false;
-                lightboxImg.classList.remove('dragging');
-                try {
-                    lightboxImg.releasePointerCapture(event.pointerId);
-                } catch (e) {}
-            }
-
-            lightboxImg.addEventListener('pointerup', stopDragging);
-            lightboxImg.addEventListener('pointercancel', stopDragging);
-            lightboxImg.addEventListener('pointerleave', stopDragging);
-
-            function closeLightbox() {
-                lightbox.classList.remove('show');
-                lightbox.setAttribute('aria-hidden', 'true');
-                lightboxImg.src = '';
-                resetImageView();
-            }
-
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (event) => {
-                if (event.target === lightbox) closeLightbox();
-            });
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') closeLightbox();
-            });
-        })();
-    </script>
-
-
-    <audio id="bgMusic" preload="auto" loop>
-        <source src="musique/chinepratique.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        // Musique de fond : lancement au premier clic, comme sur la page d'accueil
-        (function () {
-            const music = document.getElementById("bgMusic");
-            if (!music) return;
-
-            music.volume = 0.05;
-
-            function lancerMusique() {
-                if (!music.paused) return;
-
-                music.play()
-                    .then(() => {
-                        document.removeEventListener("pointerdown", lancerMusique, true);
-                        document.removeEventListener("click", lancerMusique, true);
-                    })
-                    .catch(err => {
-                        console.log("Lecture refusée :", err);
-                    });
-            }
-
-            window.addEventListener("load", () => {
-                music.play().catch(() => {
-                    // Autoplay souvent refusé par le navigateur : le premier clic prendra le relais.
-                });
-            });
-
-            document.addEventListener("pointerdown", lancerMusique, true);
-            document.addEventListener("click", lancerMusique, true);
-        })();
-    </script>
-
-    <script data-goatcounter="https://jldaussygoat.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<header>
+<h1>Le voyage</h1>
+
+<h2 class="seo-hidden">
+Itinéraire de voyage en Chine en avril 2026 : Beijing (Pékin), Pingyao (Shanxi), Xi'an (Shaanxi), Tianshui et Maijishan (Gansu), Nanjing (Jiangsu), Huangshan, Hongcun et Xidi (Anhui), Hangzhou (Zhejiang) et Shanghai.
+</h2>
+
+<a class="homebtn" href="index.html">← Accueil</a>
+</header>
+
+<div id="map"></div>
+
+<div id="hotelModal" class="hotel-modal">
+  <span class="hotel-modal-close" id="modalClose">&times;</span>
+  <img class="hotel-modal-content" id="modalImg" src="" alt="Photo de l'hôtel">
+</div>
+
+<script>
+
+var map = L.map('map')
+
+var southWest = L.latLng(28.523037517192364, 104.88364248831648)
+var northEast = L.latLng(40.96313757261032, 122.5)
+
+var bounds = L.latLngBounds(southWest, northEast)
+
+map.fitBounds(bounds, {
+  padding: [20, 20],
+  animate: false
+})
+
+setTimeout(() => {
+  map.invalidateSize()
+}, 150)
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+maxZoom:18,
+attribution:'© OpenStreetMap'
+}
+).addTo(map)
+
+function go(set){
+
+if(set==='pekinmap'){
+window.location.href='pekin.html?v=' + Date.now()
+return
+}
+
+if(set==='huangshanmap'){
+window.location.href='huangshan.html'
+return
+}
+
+if(set==='xianmap'){
+window.location.href='xian.html'
+return
+}
+
+
+window.location.href =
+    'slideshow.html?set=' + set +
+    '&from=' + encodeURIComponent(location.pathname.split('/').pop());
+
+
+}
+
+function ville(lat, lon, name, set){
+
+var label = L.marker([lat,lon], {
+icon:L.divIcon({
+className:'ville-label',
+html:'<div class="ville-box">'+name+'</div>'
+})
+}).addTo(map)
+
+label.on('click', function(){
+go(set)
+})
+
+}
+
+// Gestionnaires d'événements pour la boîte modale
+const modal = document.getElementById('hotelModal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.getElementById('modalClose');
+
+modalClose.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// Permet aussi de fermer en cliquant n'importe où sur le fond sombre
+modal.addEventListener('click', function(e) {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// Modification de la fonction hotel pour accepter une image
+function hotel(lat, lon, imageName){
+
+const iconSvg = `
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 24 24"
+     width="28"
+     height="28"
+     fill="#D32F2F">
+    <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+</svg>`;
+
+var hotelMarker = L.marker([lat, lon], {
+    icon: L.divIcon({
+        className: 'custom-hotel-icon',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        html: iconSvg
+    })
+}).addTo(map);
+
+// Si un nom d'image est renseigné, on ajoute l'événement de clic
+if (imageName) {
+  hotelMarker.on('click', function() {
+    modalImg.src = 'hotels/' + imageName;
+    modal.style.display = 'block';
+  });
+}
+
+}
+
+const villes = {
+
+pekin:[39.9042,116.4074],
+pingyao:[37.1896,112.1767],
+xian:[34.3416,108.9398],
+tianshui:[34.5809,105.7249],
+nankin:[32.0603,118.7969],
+huangshan:[29.7147,118.3376],
+hangzhou:[30.2741,120.1551],
+shanghai:[31.2304,121.4737]
+
+}
+
+ville(...villes.pekin,'Pékin','pekinmap')
+ville(...villes.pingyao,'Pingyao','pingyao')
+ville(...villes.xian,'Xi’an','xianmap')
+ville(...villes.tianshui,'Tianshui','tianshui')
+ville(...villes.nankin,'Nankin','nankin')
+ville(...villes.huangshan,'Huangshan','huangshanmap')
+ville(...villes.hangzhou,'Hangzhou','hangzhou')
+ville(...villes.shanghai,'Shanghai','shanghai')
+
+// ============================
+// HÔTELS
+// ============================
+
+// Píngyáo xiáng shēngyuán kèzhàn
+hotel(37.207158, 112.180989, 'pingyao.jpg');
+
+// Tianshui hotel -> Ajout de tianshui.jpg
+hotel(34.579792, 105.746015, 'tianshui.jpg');
+
+// Ruilan Hotel Nankin -> Ajout de nankin.jpg
+hotel(32.035256, 118.805144, 'nankin.jpg');
+
+// Hangzhou -> Ajout de hangzhou.jpg
+hotel(30.275719, 120.123965, 'hangzhou.jpg');
+
+// Atour Hotel East Nanjing Road Shanghai -> Ajout de shanghai.jpg
+hotel(31.236885, 121.483780, 'shanghai.jpg');
+
+// ============================
+// ROUTE
+// ============================
+
+const routeCoords = [
+villes.pekin,
+villes.pingyao,
+villes.xian,
+villes.tianshui,
+villes.nankin,
+villes.huangshan,
+villes.hangzhou,
+villes.shanghai,
+villes.pekin
+]
+
+const routeLine = L.polyline(routeCoords, {
+color:'#1f2a44',
+weight:3,
+opacity:0.85
+}).addTo(map)
+
+routeLine.on('mouseover', function(){
+this.setStyle({
+color:'#0b1f3a',
+weight:5,
+opacity:0.95
+})
+})
+
+routeLine.on('mouseout', function(){
+this.setStyle({
+color:'#1f2a44',
+weight:3,
+opacity:0.85
+})
+})
+
+const geo = topojson.feature(
+provincesData,
+provincesData.objects.provinces
+)
+
+const baseLayer = L.geoJSON(geo, {
+style: function(){
+return {
+color:'#000',
+weight:1,
+opacity:0.5,
+fillOpacity:0
+}
+}
+}).addTo(map)
+
+const mainLayer = L.geoJSON(geo, {
+style: function(){
+return {
+color:'#000',
+weight:1.2,
+opacity:0.6,
+fillColor:'#fff',
+fillOpacity:0.02
+}
+},
+onEachFeature: function(feature, layer){
+
+const center = layer.getBounds().getCenter()
+
+const label = L.marker(center, {
+interactive:false,
+icon:L.divIcon({
+className:'province-label',
+html:'<div class="province-name">'+feature.properties.name+'</div>'
+})
+}).addTo(map)
+
+layer._label = label
+
+layer.on('mouseover', function(){
+
+layer.setStyle({
+color:'#0b1f3a',
+weight:3,
+opacity:1,
+fillColor:'#0b1f3a',
+fillOpacity:0.12
+})
+
+layer.bringToFront()
+
+if(layer._label){
+const el = layer._label.getElement()
+if(el){
+const name = el.querySelector('.province-name')
+if(name){
+name.style.opacity = '1'
+name.style.color = '#0b1f3a'
+name.style.transform = 'translate(-50%, -50%) scale(1.05)'
+}
+}
+}
+
+})
+
+layer.on('mouseout', function(){
+
+layer.setStyle({
+color:'#000',
+weight:1.2,
+opacity:0.6,
+fillColor:'#fff',
+fillOpacity:0.02
+})
+
+if(layer._label){
+const el = layer._label.getElement()
+if(el){
+const name = el.querySelector('.province-name')
+if(name){
+name.style.opacity = '0'
+name.style.transform = 'translate(-50%, -50%) scale(1)'
+}
+}
+}
+
+})
+
+}
+}).addTo(map)
+
+</script>
+
 </body>
 </html>

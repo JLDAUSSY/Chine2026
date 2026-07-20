@@ -1179,6 +1179,10 @@ if (music) {
     music.src = "musique/scenesrue.mp3";
   } else if (set === "chinois") {
     music.src = "musique/chinois12dB.mp3";
+  } else if (set === "shanghai") {
+    music.src = "musique/shanghai_quieter.mp3";
+  } else if (set === "nankin") {
+    music.src = "musique/nanjing.mp3";
   } else {
     music.remove();
   }

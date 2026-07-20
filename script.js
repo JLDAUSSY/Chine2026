@@ -1177,6 +1177,8 @@ if (music) {
     music.src = "musique/police.mp3";
   } else if (set === "scenesrue") {
     music.src = "musique/scenesrue.mp3";
+  } else if (set === "chinois") {
+    music.src = "musique/chinois12dB.mp3";
   } else {
     music.remove();
   }

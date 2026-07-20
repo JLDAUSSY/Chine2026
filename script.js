@@ -1183,6 +1183,8 @@ if (music) {
     music.src = "musique/shanghai_quieter.mp3";
   } else if (set === "nankin") {
     music.src = "musique/nanjing.mp3";
+  } else if (set === "tianshui") {
+    music.src = "musique/tianshui.mp3";
   } else {
     music.remove();
   }

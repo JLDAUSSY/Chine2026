@@ -1193,6 +1193,26 @@ if (music) {
     music.src = "musique/ci.mp3";
   } else if (set === "palaisdete") {
     music.src = "musique/palais.mp3";
+  } else if (set === "pekinville") {
+    music.src = "musique/pjingshort.mp3";
+  } else if (set === "templeduciel") {
+    music.src = "musique/ciel.mp3";
+  } else if (set === "grandemosquee") {
+    music.src = "musique/mos.mp3";
+  } else if (set === "grandepagode") {
+    music.src = "musique/pagode.mp3";
+  } else if (set === "petitepagode") {
+    music.src = "musique/pagode.mp3";
+  } else if (set === "hangzhou") {
+    music.src = "musique/hang.mp3";
+  } else if (set === "hongcun") {
+    music.src = "musique/hong.mp3";
+  } else if (set === "xidi") {
+    music.src = "musique/xidi.mp3";
+  } else if (set === "monthuangshan") {
+    music.src = "musique/rando.mp3";
+  } else if (set === "tunxi") {
+    music.src = "musique/tunxi.mp3";
   } else {
     music.remove();
   }

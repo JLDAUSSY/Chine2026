@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notes de version - Chine 2026</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f8f2e8, #fffaf2);
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Filigrane */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("templeduciel/3.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    opacity: 0.12;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Le contenu reste au-dessus du filigrane */
+.card > * {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #a52a2a;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 35px;
+    font-style: italic;
+}
+
+.version {
+    border-left: 5px solid #c0392b;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.version h2 {
+    color: #c0392b;
+    margin-top: 0;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #888;
+    font-size: 0.9em;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Notes de version</h1>
+
+<div class="subtitle">
+Carnet de voyage interactif - Chine 2026
+</div>
+
+<div class="version">
+
+<h2>Version du 21 juillet 2026</h2>
+
+<ul>
+
+<li>
+🎵 Une musique chinoise différente accompagne désormais chaque slideshow,
+adaptée à l'ambiance de chaque étape du voyage.
+</li>
+
+<li>
+ℹ️ Lorsqu'une photo possède des informations explicatives
+(bouton « i » en bas à droite), le bouton est animé et un son « ding »
+attire l'attention du visiteur.
+</li>
+
+<li>
+📷 Les photos des diaporamas sont maintenant numérotées.
+</li>
+
+</ul>
+
+</div>
+
+<div class="footer">
+Dernière mise à jour : 21 juillet 2026<br>
+Édith &amp; Jean-Luc Daussy
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

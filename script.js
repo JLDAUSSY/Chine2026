@@ -1187,6 +1187,12 @@ if (music) {
     music.src = "musique/tianshui.mp3";
   } else if (set === "pingyao") {
     music.src = "musique/pingyao.mp3";
+  } else if (set === "mutianyu") {
+    music.src = "musique/gm.mp3";
+  } else if (set === "citeinterdite") {
+    music.src = "musique/ci.mp3";
+  } else if (set === "palaisdete") {
+    music.src = "musique/palais.mp3";
   } else {
     music.remove();
   }

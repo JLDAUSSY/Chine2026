@@ -202,6 +202,33 @@ header {
     border: none;
 }
 
+
+/* Style soigné pour l'infobulle au survol des villes */
+.leaflet-tooltip.custom-tooltip {
+  background-color: #1f2a44;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* Flèche du tooltip */
+.leaflet-tooltip-top.custom-tooltip::before {
+  border-top-color: #1f2a44;
+}
+
+
+
+
+
+
+
+
+
 /* ======================================= */
 /* 🎬 SLIDESHOW VIEWER DE CONDUITE         */
 /* ======================================= */

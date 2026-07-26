@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Huangshan, Hongcun et Xidi (Anhui) - Montagnes jaunes et villages UNESCO - Voyage en Chine 2026</title>
+    <title>Huangshan, Hongcun et Xidi (Anhui) - Montagnes jaunes et villages UNESCO - Voyage en Chine 2026</title>
 
-<meta name="description"
-      content="Photos, carte interactive, trace GPX et diaporamas de la région de Huangshan dans l'Anhui : mont Huangshan, montagnes jaunes, villages UNESCO de Hongcun et Xidi, et vieille rue de Tunxi.">
+    <meta name="description"
+          content="Photos, carte interactive, trace GPX et diaporamas de la région de Huangshan dans l'Anhui : mont Huangshan, montagnes jaunes, villages UNESCO de Hongcun et Xidi, et vieille rue de Tunxi.">
 
-<link rel="canonical"
-      href="https://jldaussy.github.io/Chine2026/huangshan.html">
-    
+    <link rel="canonical"
+          href="https://jldaussy.github.io/Chine2026/huangshan.html">
+        
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <link rel="stylesheet" href="style.css">
 
@@ -119,25 +119,32 @@
     // Tableau pour stocker les coordonnées et ajuster automatiquement la vue
     const points = [];
 
-    // Fonction de  création des zones (Marqueurs)
-    function zone(lat, lon, name, set) {
+    // Fonction de création des zones (Marqueurs)
+    function zone(lat, lon, name, set, infoTooltip) {
 
         points.push([lat, lon]);
 
-        L.marker([lat, lon], {
+        const marker = L.marker([lat, lon], {
             icon: L.divIcon({
                 className: '',
                 html: `<div class="ville-box">${name}</div>`
             })
-        })
-        .addTo(map)
-        
+        }).addTo(map);
 
-.on('click', (e) => {
-    L.DomEvent.stopPropagation(e);
-    window.location = 'slideshow.html?set=' + set + '&from=' + encodeURIComponent(location.pathname.split('/').pop());
-});
+        // Ajout de l'infobulle au survol
+        if (infoTooltip) {
+            marker.bindTooltip(infoTooltip, {
+                direction: 'top',
+                offset: [0, -10],
+                opacity: 0.95,
+                className: 'custom-tooltip'
+            });
+        }
 
+        marker.on('click', (e) => {
+            L.DomEvent.stopPropagation(e);
+            window.location = 'slideshow.html?set=' + set + '&from=' + encodeURIComponent(location.pathname.split('/').pop());
+        });
 
     }
 
@@ -195,17 +202,17 @@
     // CONFIGURATION DES ZONES (MARQUEURS)
     // ==========================================
 
-    // Hongcun
-    zone(30.11, 117.99, 'Hongcun', 'hongcun');
-
-    // Xidi
-    zone(29.91, 117.99, 'Xidi', 'xidi');
-
     // Tunxi
-    zone(29.71, 118.31, 'Tunxi', 'tunxi');
+    zone(29.71, 118.31, '1 - Tunxi', 'tunxi', '<strong>Étape 1 : Tunxi</strong><br>📍 Vieille rue & Arrivée');
 
     // Mont Huangshan
-    zone(30.13, 118.17, 'Mont Huangshan - la rando', 'monthuangshan');
+    zone(30.13, 118.17, '2 - Mont Huangshan - la rando', 'monthuangshan', '<strong>Étape 2 : Mont Huangshan</strong><br>📍 Randonnée dans les Monts Jaunes');
+
+    // Hongcun
+    zone(30.11, 117.99, '3 - Hongcun', 'hongcun', '<strong>Étape 3 : Hongcun</strong><br>📍 Village traditionnel UNESCO');
+
+    // Xidi
+    zone(29.91, 117.99, '4 - Xidi', 'xidi', '<strong>Étape 4 : Xidi</strong><br>📍 Village patrimonial UNESCO');
 
     // ==========================================
     // HÔTELS
@@ -216,6 +223,25 @@
 
     // Hongcun Nanhu Guanyuan Designer Lake View Resort Hotel -> hongcun.jpg
     hotel(30.003527, 117.986552, 'hongcun.jpg');
+
+    // ==========================================
+    // TRACÉ DE L'ITINÉRAIRE INTER-SITES
+    // ==========================================
+
+    const etapesRoute = [
+        [29.71, 118.31], // 1 - Tunxi
+        [30.13, 118.17], // 2 - Mont Huangshan
+        [30.11, 117.99], // 3 - Hongcun
+        [29.91, 117.99], // 4 - Xidi
+        [29.71, 118.31]  // Retour à Tunxi
+    ];
+
+    // Tracé de la ligne pleine reliant les étapes
+    const routeHuangshan = L.polyline(etapesRoute, {
+        color: '#1f2a44',
+        weight: 3,
+        opacity: 0.85
+    }).addTo(map);
 
     // ==========================================
     // CADRAGE INITIAL & PRE-CALCUL DES LIMITES

@@ -182,18 +182,28 @@ window.location.href =
 
 }
 
-function ville(lat, lon, name, set){
+function ville(lat, lon, name, set, infoTooltip){
 
-var label = L.marker([lat,lon], {
-icon:L.divIcon({
-className:'ville-label',
-html:'<div class="ville-box">'+name+'</div>'
-})
-}).addTo(map)
+  var label = L.marker([lat,lon], {
+    icon: L.divIcon({
+      className: 'ville-label',
+      html: '<div class="ville-box">' + name + '</div>'
+    })
+  }).addTo(map);
 
-label.on('click', function(){
-go(set)
-})
+  // Ajout de l'infobulle au survol
+  if (infoTooltip) {
+    label.bindTooltip(infoTooltip, {
+      direction: 'top',
+      offset: [0, -10],
+      opacity: 0.95,
+      className: 'custom-tooltip'
+    });
+  }
+
+  label.on('click', function(){
+    go(set);
+  });
 
 }
 
@@ -257,14 +267,14 @@ shanghai:[31.2304,121.4737]
 
 }
 
-ville(...villes.pekin,'Pékin','pekinmap')
-ville(...villes.pingyao,'Pingyao','pingyao')
-ville(...villes.xian,'Xi’an','xianmap')
-ville(...villes.tianshui,'Tianshui','tianshui')
-ville(...villes.nankin,'Nankin','nankin')
-ville(...villes.huangshan,'Huangshan','huangshanmap')
-ville(...villes.hangzhou,'Hangzhou','hangzhou')
-ville(...villes.shanghai,'Shanghai','shanghai')
+ville(...villes.pekin, '1 - Pékin', 'pekinmap', '<strong>Étape 1 et étape 9 : Pékin</strong><br>📅 1 et 2 avril / 20 et 21 avril');
+ville(...villes.pingyao, '2 - Pingyao', 'pingyao', '<strong>Étape 2 : Pingyao</strong><br>📅 3 et 4 avril');
+ville(...villes.xian, '3 - Xi’an', 'xianmap', '<strong>Étape 3 : Xi’an</strong><br>📅 05 - 07 avril');
+ville(...villes.tianshui, '4 - Tianshui', 'tianshui', '<strong>Étape 4 : Tianshui</strong><br>📅 08 - 09 avril');
+ville(...villes.nankin, '5 - Nankin', 'nankin', '<strong>Étape 5 : Nankin</strong><br>📅 11 avril (le 10 avril : trajet Tianshui - Nankin)');
+ville(...villes.huangshan, '6 - Huangshan', 'huangshanmap', '<strong>Étape 6 : Huangshan</strong><br>📅 12 - 15 avril');
+ville(...villes.hangzhou, '7 - Hangzhou', 'hangzhou', '<strong>Étape 7 : Hangzhou</strong><br>📅 16 avril');
+ville(...villes.shanghai, '8 - Shanghai', 'shanghai', '<strong>Étape 8 : Shanghai</strong><br>📅 17 - 19 avril');
 
 // ============================
 // HÔTELS

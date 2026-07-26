@@ -517,6 +517,54 @@ header {
     opacity: 1;
 }
 
+
+.version-trigger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.version-trigger:hover {
+    background: white;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+.version-trigger .question {
+    display: inline-block;
+    animation: blinkQuestion 1.2s infinite ease-in-out;
+}
+
+@keyframes blinkQuestion {
+    0%,100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.2;
+        transform: scale(1.5);
+    }
+}
+
+
+
 .modal {
     display: none;
     position: fixed;
